@@ -23,7 +23,7 @@
                 @foreach ($columns as $column)
                     <th>{{ $column }}</th>
                 @endforeach
-                <th>Sil</th>
+                <th>Sil / Ekle</th>
             </tr>
         </thead>
         <tbody>
@@ -44,12 +44,11 @@
                         />
                     </td>
                     <td>
-                        <input type="hidden"
-                            name="categories[{{ $i }}][status]"
-                            value="0">
-                        <input type="checkbox"
-                            name="categories[{{ $i }}][status]"
-                            value="1" {{ $category->status ? 'checked' : '' }}>
+                        <x-checkbox-input
+                            :namePrefix="'categories[' . $i . ']'"
+                            :column="'status'"
+                            :model="$category"
+                        />
                     </td>
                     <td>
                         <form method="POST" action="{{ route('categories.delete') }}">
@@ -62,13 +61,28 @@
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <form method="POST" action="{{ route('categories.add') }}">
+                    @csrf
+                    <td>Yeni</td>
+                    <td>
+                        <input type="text" name="name" class="form-control" required>
+                    </td>
+                    <td>
+                        <input type="hidden" name="status" value="0">
+                        <input type="checkbox" name="status" value="1" unchecked>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </td>
+                </form>
+            </tr>
         </tbody>
 
     </table>
 
-    <div class="mb-3">
-        <button type="button" class="btn btn-success" id="add-category-btn">Ekle</button>
-    </div>
     <x-submit-buttons />
 
 </form>

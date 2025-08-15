@@ -49,4 +49,16 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.edit')->with('success', 'Kategori ve ilişkili ürünler silindi.');
     }
+
+    public function add(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'boolean'],
+        ]);
+
+        Categories::create($request->only('name', 'status'));
+
+        return redirect()->route('categories.edit')->with('success', 'Kategori başarıyla eklendi.');
+    }
 }

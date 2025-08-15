@@ -13,6 +13,7 @@ Route::prefix('/admin/categories')->group(function () {
     Route::get('/', [CategoriesController::class, 'edit'])->name('categories.edit');
     Route::post('/update', [CategoriesController::class, 'update'])->name('categories.update');
     Route::post('/delete', [CategoriesController::class, 'delete'])->name('categories.delete');
+    Route::post('/add', [CategoriesController::class, 'add'])->name('categories.add');
 });
 
 Route::prefix('/admin/products')->group(function () {
