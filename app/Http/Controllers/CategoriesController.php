@@ -30,9 +30,10 @@ class CategoriesController extends Controller
         foreach ($request->categories as $categoryData) {
             $category = Categories::find($categoryData['id']);
             if ($category) {
-                $category->name = $categoryData['name'];
-                $category->status = $categoryData['status'];
-                $category->save();
+                $category->update([
+                    'name' => $categoryData['name'],
+                    'status' => $categoryData['status'],
+                ]);
             }
         }
 
