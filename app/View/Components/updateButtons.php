@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class submitButtons extends Component
+class updateButtons extends Component
 {
     public string $submitLabel;
     public string $cancelLabel;
@@ -25,6 +25,6 @@ class submitButtons extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.submit-buttons');
+        return view('components.update-buttons');
     }
 }

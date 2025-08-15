@@ -4,4 +4,4 @@
     
 <input type="checkbox"
     name="{{ isset($namePrefix) ? $namePrefix . '['. $column .']' : $column }}"
-    value="1" {{ $model->$column ? 'checked' : '' }}>
+    value="1" {{ $model->$column ?? false ? 'checked' : '' }}>

@@ -54,9 +54,7 @@
                         <form method="POST" action="{{ route('categories.delete') }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $category->id }}">
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
+                            <x-remove-button />
                         </form>                     
                     </td>
                 </tr>
@@ -66,16 +64,20 @@
                     @csrf
                     <td>Yeni</td>
                     <td>
-                        <input type="text" name="name" class="form-control" required>
+                        <x-text-input 
+                            :column="'name'"
+                            :model="null"
+                            :required="true"
+                        />
                     </td>
                     <td>
-                        <input type="hidden" name="status" value="0">
-                        <input type="checkbox" name="status" value="1" unchecked>
+                        <x-checkbox-input
+                            :column="'status'"
+                            :model="null"
+                        />
                     </td>
                     <td>
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <x-add-button />
                     </td>
                 </form>
             </tr>
@@ -83,7 +85,7 @@
 
     </table>
 
-    <x-submit-buttons />
+    <x-update-buttons />
 
 </form>
 
