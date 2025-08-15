@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class CategoriesController extends Controller
 {
     public function edit()
     {
         $categories = Categories::all();
+        $columns = ['ID', 'İsim', 'Aktif'];
         return view('categories-edit', [
             'categories' => $categories,
+            'columns' => $columns,
         ]);
     }
 

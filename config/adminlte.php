@@ -320,7 +320,11 @@ return [
             'route' => 'categories.edit',
             'icon' => 'fas fa-fw fa-tags',
         ],
-
+        [
+            'text' => 'Ürünler',
+            'route' => 'products.edit',
+            'icon' => 'fas fa-fw fa-box',
+        ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',

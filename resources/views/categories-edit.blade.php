@@ -16,12 +16,12 @@
     <form method="POST" action="{{ route('categories.update') }}">
         @csrf
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="categories-table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>İsim</th>
-                    <th>Aktif</th>
+                    @foreach ($columns as $column)
+                        <th>{{ $column }}</th>
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +52,9 @@
             </tbody>
         </table>
 
+        <div class="mb-3">
+            <button type="button" class="btn btn-success" id="add-category-btn">Ekle</button>
+        </div>
         <x-submit-buttons />
     </form>
 @stop
@@ -62,5 +65,19 @@
 @stop
 
 @section('js')
+<script src="{{ asset('js/hideAlerts.js') }}"></script>
 
+<script src="{{ asset('js/addNewRow.js') }}"></script>
+<script>
+    addRowToTable(
+        'categories-table',
+        'add-category-btn',
+        [
+            'Yeni',
+            '<input type="text" name="categories[__INDEX__][name]" class="form-control" required>',
+            '<input type="hidden" name="categories[__INDEX__][status]" value="0">' +
+                '<input type="checkbox" name="categories[__INDEX__][status]" value="1">',
+        ]
+    )
+</script>
 @stop
