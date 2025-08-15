@@ -9,7 +9,7 @@ class CategoriesController extends Controller
 {
     public function edit()
     {
-        $categories = Categories::where('status', 1)->get();
+        $categories = Categories::all();
         return view('categories-edit', [
             'categories' => $categories,
         ]);
