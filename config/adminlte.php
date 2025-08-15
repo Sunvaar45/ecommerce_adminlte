@@ -317,7 +317,7 @@ return [
         ],
         [
             'text' => 'Kategoriler',
-            'url' => 'admin/categories',
+            'route' => 'categories.edit',
             'icon' => 'fas fa-fw fa-tags',
         ],
 
