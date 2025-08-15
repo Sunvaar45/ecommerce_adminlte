@@ -310,11 +310,17 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+        /* Sidebar Items */
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        [
+            'text' => 'Kategoriler',
+            'url' => 'admin/categories',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+
         [
             'text' => 'blog',
             'url' => 'admin/blog',
