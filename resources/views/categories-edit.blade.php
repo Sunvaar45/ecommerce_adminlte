@@ -30,10 +30,10 @@
             @foreach ($categories as $i => $category)
                 <tr>
                     <td>
-                        <input type="hidden"
-                            name="categories[{{ $i }}][id]"
-                            value="{{ $category->id }}">
-                            {{ $category->id }}
+                        <x-id-input 
+                            :namePrefix="'categories[' . $i . ']'"
+                            :model="$category"
+                        />
                     </td>
                     <td>
                         <x-text-input 
