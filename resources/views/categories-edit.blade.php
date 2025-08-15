@@ -36,10 +36,12 @@
                             {{ $category->id }}
                     </td>
                     <td>
-                        <input type="text"
-                            name="categories[{{ $i }}][name]"
-                            value="{{ $category->name }}"
-                            class="form-control" required>
+                        <x-text-input 
+                            :namePrefix="'categories[' . $i . ']'"
+                            :column="'name'"
+                            :model="$category"
+                            :required="true"
+                        />
                     </td>
                     <td>
                         <input type="hidden"
@@ -50,13 +52,18 @@
                             value="1" {{ $category->status ? 'checked' : '' }}>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm remove-row-btn">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        <form method="POST" action="{{ route('categories.delete') }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $category->id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>                     
                     </td>
                 </tr>
             @endforeach
         </tbody>
+
     </table>
 
     <div class="mb-3">
@@ -65,6 +72,7 @@
     <x-submit-buttons />
 
 </form>
+
 @stop
 
 @section('css')

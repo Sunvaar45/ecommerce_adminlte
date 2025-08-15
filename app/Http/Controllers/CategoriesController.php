@@ -40,4 +40,13 @@ class CategoriesController extends Controller
         return redirect()->route('categories.edit')
             ->with('success', 'Kategoriler başarıyla güncellendi.');
     }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+        $category = Categories::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('categories.edit')->with('success', 'Kategori ve ilişkili ürünler silindi.');
+    }
 }

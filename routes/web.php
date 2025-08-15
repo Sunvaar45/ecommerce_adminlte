@@ -12,6 +12,7 @@ Route::get('/admin/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('/admin/categories')->group(function () {
     Route::get('/', [CategoriesController::class, 'edit'])->name('categories.edit');
     Route::post('/update', [CategoriesController::class, 'update'])->name('categories.update');
+    Route::post('/delete', [CategoriesController::class, 'delete'])->name('categories.delete');
 });
 
 Route::prefix('/admin/products')->group(function () {
