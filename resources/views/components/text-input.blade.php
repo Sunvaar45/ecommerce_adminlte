@@ -14,3 +14,7 @@
     class="form-control"
     @if(isset($required) && $required) required @endif
     >
+
+@error($dotName)
+    <div class="text-danger">{{ $message }}</div>
+@enderror

@@ -43,13 +43,28 @@
                         />
                     </td>
                     <td>
-                        <input type="number"
-                            name="products[{{ $i }}][price]"
-                            value="{{ old('products.' . $i . '.price', $product->price ?? '') }}"
-                            class="form-control"
-                            step="0.01"
-                            min="0"
-                            required>
+                        <x-text-input 
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'description'"
+                            :model="$product"
+                            :required="false"
+                        />
+                    </td>
+                    <td>
+                        <x-price-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'price'"
+                            :model="$product"
+                            :required="true"
+                        />
+                    </td>
+                    <td>
+                        <x-price-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'discount_price'"
+                            :model="$product"
+                            :required="true"
+                        />
                     </td>
                 </tr>
             @endforeach
