@@ -15,3 +15,7 @@ if (isset($namePrefix)) {
     min="0"
     @if(isset($required) && $required) required @endif
     >
+
+@error($dotName)
+    <div class="text-danger">{{ $message }}</div>
+@enderror

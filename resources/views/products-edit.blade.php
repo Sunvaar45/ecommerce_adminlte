@@ -34,7 +34,7 @@
                             :model="$product"
                         />
                     </td>
-                    <td>
+                    <td> {{-- isim --}}
                         <x-text-input 
                             :namePrefix="'products[' . $i . ']'"
                             :column="'name'"
@@ -42,7 +42,7 @@
                             :required="true"
                         />
                     </td>
-                    <td>
+                    <td> {{-- açıklama --}}
                         <x-text-input 
                             :namePrefix="'products[' . $i . ']'"
                             :column="'description'"
@@ -50,7 +50,7 @@
                             :required="false"
                         />
                     </td>
-                    <td>
+                    <td> {{-- fiyat --}}
                         <x-price-input
                             :namePrefix="'products[' . $i . ']'"
                             :column="'price'"
@@ -58,7 +58,7 @@
                             :required="true"
                         />
                     </td>
-                    <td>
+                    <td> {{-- indirimli fiyat --}}
                         <x-price-input
                             :namePrefix="'products[' . $i . ']'"
                             :column="'discount_price'"

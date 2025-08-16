@@ -51,35 +51,30 @@
                         />
                     </td>
                     <td>
-                        <form method="POST" action="{{ route('categories.delete') }}">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $category->id }}">
-                            <x-remove-button />
-                        </form>                     
+                        <x-remove-button 
+                            :model="$category"
+                        />                   
                     </td>
                 </tr>
             @endforeach
             <tr>
-                <form method="POST" action="{{ route('categories.add') }}">
-                    @csrf
-                    <td>Yeni</td>
-                    <td>
-                        <x-text-input 
-                            :column="'name'"
-                            :model="null"
-                            :required="true"
-                        />
-                    </td>
-                    <td>
-                        <x-checkbox-input
-                            :column="'status'"
-                            :model="null"
-                        />
-                    </td>
-                    <td>
-                        <x-add-button />
-                    </td>
-                </form>
+                <td>Yeni</td>
+                <td>
+                    <x-text-input 
+                        :column="'new_name'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td>
+                    <x-checkbox-input
+                        :column="'new_status'"
+                        :model="null"
+                    />
+                </td>
+                <td>
+                    <x-add-button />
+                </td>
             </tr>
         </tbody>
 
@@ -88,7 +83,6 @@
     <x-update-buttons />
 
 </form>
-
 @stop
 
 @section('css')

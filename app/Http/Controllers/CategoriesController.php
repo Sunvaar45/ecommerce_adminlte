@@ -20,6 +20,30 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
+        // delete
+        if ($request->has('remove')) {
+            $id = $request->input('remove');
+            $category = Categories::findOrFail($id);
+            $category->delete();
+            return redirect()->route('categories.edit')
+                ->with('success', 'Kategori başarıyla silindi.');
+        }
+
+        // add
+        if ($request->has('add')) {
+            $request->validate([
+                'new_name' => ['required', 'string', 'max:255'],
+                'new_status' => ['required', 'boolean'],
+            ]);
+            Categories::create([
+                'name' => $request->input('new_name'),
+                'status' => $request->input('new_status'),
+            ]);
+            return redirect()->route('categories.edit')
+                ->with('success', 'Kategori başarıyla eklendi.');
+        }
+
+        // update
         $request->validate([
             'categories' => ['required', 'array'],
             'categories.*.id' => ['required', 'integer', 'exists:categories,id'],
@@ -41,24 +65,25 @@ class CategoriesController extends Controller
             ->with('success', 'Kategoriler başarıyla güncellendi.');
     }
 
-    public function delete(Request $request)
-    {
-        $id = $request->input('id');
-        $category = Categories::findOrFail($id);
-        $category->delete();
+    // public function delete(Request $request)
+    // {
+    //     $id = $request->input('id');
+    //     $category = Categories::findOrFail($id);
+    //     $category->delete();
 
-        return redirect()->route('categories.edit')->with('success', 'Kategori ve ilişkili ürünler silindi.');
-    }
+    //     return redirect()->route('categories.edit')->with('success', 'Kategori ve ilişkili ürünler silindi.');
+    // }
 
-    public function add(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'boolean'],
-        ]);
+    // public function add(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'status' => ['required', 'boolean'],
+    //     ]);
 
-        Categories::create($request->only('name', 'status'));
+    //     $data = $request->only('name', 'status');
+    //     Categories::create($data);
 
-        return redirect()->route('categories.edit')->with('success', 'Kategori başarıyla eklendi.');
-    }
+    //     return redirect()->route('categories.edit')->with('success', 'Kategori başarıyla eklendi.');
+    // }
 }
