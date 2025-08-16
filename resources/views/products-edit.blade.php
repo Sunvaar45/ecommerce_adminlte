@@ -19,32 +19,44 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>İsim</th>
-                <th>Aktif</th>
+                @foreach ($columns as $column)
+                    <th>{{ $column }}</th>
+                @endforeach
+                <th>Sil / Ekle</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $i => $category)
+            @foreach ($products as $i => $product)
                 <tr>
                     <td>
-                        <input type="hidden" name="categories[{{ $i }}][id]" value="{{ $category->id }}">
-                        {{ $category->id }}
+                        <x-id-input 
+                            :namePrefix="'products[' . $i . ']'"
+                            :model="$product"
+                        />
                     </td>
                     <td>
-                        <input type="text" name="categories[{{ $i }}][name]" value="{{ $category->name }}"
-                            class="form-control" required>
+                        <x-text-input 
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'name'"
+                            :model="$product"
+                            :required="true"
+                        />
                     </td>
                     <td>
-                        <input type="hidden" name="categories[{{ $i }}][status]" value="0">
-                        <input type="checkbox" name="categories[{{ $i }}][status]" value="1" {{ $category->status ? 'checked' : '' }}>
+                        <input type="number"
+                            name="products[{{ $i }}][price]"
+                            value="{{ old('products.' . $i . '.price', $product->price ?? '') }}"
+                            class="form-control"
+                            step="0.01"
+                            min="0"
+                            required>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <x-submit-buttons />
+    <x-update-buttons />
 </form>
 @stop
 
