@@ -8,15 +8,17 @@ use Illuminate\View\Component;
 
 class idInput extends Component
 {
-    public ?string $namePrefix;
+    public ?string $namePrefixBracket;
+    public ?string $namePrefixDot;
     public $model;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(?string $namePrefix, $model)
+    public function __construct(?string $namePrefixBracket, ?string $namePrefixDot, $model)
     {
-        $this->namePrefix = $namePrefix;
+        $this->namePrefixBracket = $namePrefixBracket;
+        $this->namePrefixDot = $namePrefixDot;
         $this->model = $model;
     }
 

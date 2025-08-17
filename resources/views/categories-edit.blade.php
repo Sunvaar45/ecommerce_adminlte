@@ -35,7 +35,8 @@
                 <tr>
                     <td>
                         <x-id-input 
-                            :namePrefix="'categories[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :model="$category"
                         />
                     </td>
