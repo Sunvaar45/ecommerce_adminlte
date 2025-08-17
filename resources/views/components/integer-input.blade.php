@@ -2,7 +2,7 @@
 $dotName = null;
 if (isset($namePrefix)) {
     $dotName = str_replace(['[', ']'], ['.', ''], $namePrefix) . '.' . $column;
-} 
+}
 else {
     $dotName = $column;
 }
@@ -10,10 +10,10 @@ else {
 
 <input type="number"
     name="{{ isset($namePrefix) ? $namePrefix . '[' . $column . ']' : $column }}"
-    value="{{ old($dotName, $model->$column ?? '') }}"
+    value="{{ old($dotName, $model->$column ?? 0) }}"
     class="form-control"
-    step="0.01"
     min="0"
+    step="1"
     @if(isset($required) && $required) required @endif
     >
 

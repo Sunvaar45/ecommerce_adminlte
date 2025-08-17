@@ -74,12 +74,23 @@
                         />
                     </td>
                     <td> {{-- stok miktarı --}}
-
+                        <x-integer-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'stock'"
+                            :model="$product"
+                            :required="true"
+                        />
                     </td>
                     <td> {{-- renk --}}
-
+                        <x-text-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'color'"
+                            :model="$product"
+                            :required="false"
+                        />
                     </td>
                     <td> {{-- görsel --}}
+
 
                     </td>
                     <td> {{-- ait olduğu kategori --}}
