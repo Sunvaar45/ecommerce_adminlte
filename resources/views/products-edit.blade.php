@@ -90,8 +90,16 @@
                         />
                     </td>
                     <td> {{-- görsel --}}
+                        
+                        {{-- display image --}}
+                        <img src="{{ asset('storage/images/' . $product->id . '/' . $product->image_url) }}"
+                            alt="{{ $product->name }}"
+                            class="img-thumbnail">
 
-
+                        {{-- file input --}}
+                        <input type="file"
+                            name="products[{{ $i }}][image]"
+                            class="form-control">
                     </td>
                     <td> {{-- ait olduğu kategori --}}
 
