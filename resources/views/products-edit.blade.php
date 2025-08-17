@@ -27,6 +27,10 @@
         </thead>
         <tbody>
             @foreach ($products as $i => $product)
+                @php
+                    $namePrefix = 'products[' . $i . ']';
+                    $dotNamePrefix = 'products.' . $i . '.';
+                @endphp
                 <tr>
                     <td>
                         <x-id-input 
@@ -102,13 +106,28 @@
                             class="form-control">
                     </td>
                     <td> {{-- ait olduğu kategori --}}
+                        <select name="products[{{ $i }}][category_id]" class="form-control" required>
+                            <option value="">Kategori Seçiniz</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    @if ($product->category_id == $category->id) selected @endif>
+                                    {{ $category->id . ' - ' . $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
 
                     </td>
                     <td> {{-- aktif durumu --}}
-                        
+                        <x-checkbox-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'status'"
+                            :model="$product"
+                        />
                     </td>
                     <td> {{-- silme butonu --}}
-
+                        <x-remove-button 
+                            :model="$product"
+                        />
                     </td>
                 </tr>
             @endforeach
