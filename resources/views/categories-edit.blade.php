@@ -51,7 +51,8 @@
                     </td>
                     <td>
                         <x-checkbox-input
-                            :namePrefix="'categories[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'status'"
                             :model="$category"
                         />

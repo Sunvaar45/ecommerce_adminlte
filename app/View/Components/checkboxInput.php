@@ -8,16 +8,18 @@ use Illuminate\View\Component;
 
 class checkboxInput extends Component
 {
-    public ?string $namePrefix;
+    public ?string $namePrefixBracket;
+    public ?string $namePrefixDot;
     public $model;
     public string $column;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(?string $namePrefix, $model, string $column)
+    public function __construct(?string $namePrefixBracket, ?string $namePrefixDot, $model, string $column)
     {
-        $this->namePrefix = $namePrefix;
+        $this->namePrefixBracket = $namePrefixBracket;
+        $this->namePrefixDot = $namePrefixDot;
         $this->model = $model;
         $this->column = $column;
     }

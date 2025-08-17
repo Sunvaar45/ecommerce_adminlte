@@ -1,7 +1,15 @@
 <input type="hidden"
-    name="{{ isset($namePrefix) ? $namePrefix . '['. $column .']' : $column }}"
+    @if (isset($namePrefixBracket) && isset($namePrefixDot))
+        name="{{ $namePrefixBracket . '[' . $column . ']' }}"
+    @else
+        name="{{ $column }}"
+    @endif
     value="0">
     
 <input type="checkbox"
-    name="{{ isset($namePrefix) ? $namePrefix . '['. $column .']' : $column }}"
+    @if (isset($namePrefixBracket) && isset($namePrefixDot))
+        name="{{ $namePrefixBracket . '[' . $column . ']' }}"
+    @else
+        name="{{ $column }}"
+    @endif
     value="1" {{ $model->$column ?? false ? 'checked' : '' }}>
