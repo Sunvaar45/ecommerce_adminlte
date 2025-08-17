@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class validationError extends Component
 {
+    public string $column;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(string $column)
     {
-        //
+        $this->column = $column;
     }
 
     /**

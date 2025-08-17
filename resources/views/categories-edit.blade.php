@@ -28,6 +28,10 @@
         </thead>
         <tbody>
             @foreach ($categories as $i => $category)
+                @php
+                    $namePrefixBracket = 'categories[' . $i . ']';
+                    $namePrefixDot = 'categories.' . $i . '.';
+                @endphp
                 <tr>
                     <td>
                         <x-id-input 
@@ -37,7 +41,8 @@
                     </td>
                     <td>
                         <x-text-input 
-                            :namePrefix="'categories[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'name'"
                             :model="$category"
                             :required="true"

@@ -8,7 +8,8 @@ use Illuminate\View\Component;
 
 class textInput extends Component
 {
-    public ?string $namePrefix;
+    public ?string $namePrefixBracket;
+    public ?string $namePrefixDot;
     public string $column;
     public $model;
     public bool $required;
@@ -16,12 +17,13 @@ class textInput extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $column, $model, bool $required = false, ?string $namePrefix = null)
+    public function __construct(string $column, $model, bool $required = false, ?string $namePrefixBracket = null, ?string $namePrefixDot = null)
     {
         $this->column = $column;
         $this->model = $model;
         $this->required = $required;
-        $this->namePrefix = $namePrefix;
+        $this->namePrefixBracket = $namePrefixBracket;
+        $this->namePrefixDot = $namePrefixDot;
     }
 
     /**
