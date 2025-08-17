@@ -58,6 +58,13 @@
                             :required="true"
                         />
                     </td>
+                    <td> {{-- indirim aktif checkbox --}}
+                        <x-checkbox-input
+                            :namePrefix="'products[' . $i . ']'"
+                            :column="'has_discount'"
+                            :model="$product"
+                        />
+                    </td>
                     <td> {{-- indirimli fiyat --}}
                         <x-price-input
                             :namePrefix="'products[' . $i . ']'"
@@ -65,6 +72,24 @@
                             :model="$product"
                             :required="true"
                         />
+                    </td>
+                    <td> {{-- stok miktarı --}}
+
+                    </td>
+                    <td> {{-- renk --}}
+
+                    </td>
+                    <td> {{-- görsel --}}
+
+                    </td>
+                    <td> {{-- ait olduğu kategori --}}
+
+                    </td>
+                    <td> {{-- aktif durumu --}}
+                        
+                    </td>
+                    <td> {{-- silme butonu --}}
+
                     </td>
                 </tr>
             @endforeach

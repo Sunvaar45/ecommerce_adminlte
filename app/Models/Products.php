@@ -15,6 +15,7 @@ class Products extends Model
         'name',
         'description',
         'price',
+        'has_discount',
         'discount_price',
         'stock',
         'color',
