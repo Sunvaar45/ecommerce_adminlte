@@ -227,12 +227,7 @@
 {{-- Add here extra stylesheets --}}
 {{--
 <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-<style>
-    td, th {
-        text-align: center;
-        vertical-align: middle;
-    }
-</style>
+<link rel="stylesheet" href="/css/table_style.css">
 @stop
 
 @section('js')
