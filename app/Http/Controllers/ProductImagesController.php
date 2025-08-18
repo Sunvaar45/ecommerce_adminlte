@@ -10,8 +10,10 @@ class ProductImagesController extends Controller
     public function edit()
     {
         $productImages = ProductImages::all();
+        $columns = ['ID', 'Ürün', 'Görsel', 'Alternatif Metin', 'Aktif'];
         return view('product-images-edit', [
             'productImages' => $productImages,
+            'columns' => $columns,
         ]);
     }
 

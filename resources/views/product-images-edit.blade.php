@@ -27,36 +27,68 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $i => $category)
+            @foreach ($productImages as $i => $productImage)
                 @php
-                    $namePrefixBracket = 'categories[' . $i . ']';
-                    $namePrefixDot = 'categories.' . $i . '.';
+                    $namePrefixBracket = 'productImages[' . $i . ']';
+                    $namePrefixDot = 'productImages.' . $i . '.';
                 @endphp
                 <tr>
-                    <td>
-
+                    <td> {{-- ID --}}
+                        <x-id-input 
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :model="$productImage"
+                        />
                     </td>
-                    <td>
-
+                    <td> {{-- ait olduğu ürün --}}
+                        
                     </td>
-                    <td>
-                        <x-checkbox-input :namePrefixBracket="$namePrefixBracket" :namePrefixDot="$namePrefixDot"
-                            :column="'status'" :model="$category" />
+                    <td> {{-- görsel --}}
+                        <x-image-upload 
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :model="$productImage"
+                            :column="'image_url'"
+                            :imageDir="'storage/images/products/'"
+                            :maxWidth="'100px'"
+                        />
                     </td>
-                    <td>
-                        <x-remove-button :model="$category" />
+                    <td> {{-- görsel alternatif metin --}}
+                        <x-text-input
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'image_alt'"
+                            :model="$productImage"
+                        />
+                    </td>
+                    <td> {{-- aktif checkbox --}}
+                        <x-checkbox-input
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'status'"
+                            :model="$productImage"
+                        />
+                    </td>
+                    <td> {{-- sil --}}
+                        <x-remove-button :model="$productImage" />
                     </td>
                 </tr>
             @endforeach
             <tr>
                 <td>Yeni</td>
-                <td>
-                    <x-text-input :column="'new_name'" :model="null" :required="false" />
+                <td> {{-- ait olduğu ürün --}}
+                    
                 </td>
-                <td>
-                    <x-checkbox-input :column="'new_status'" :model="null" />
+                <td> {{-- görsel --}}
+                    
                 </td>
-                <td>
+                <td> {{-- görsel alt metin --}}
+
+                </td>
+                <td> {{-- aktif checkbox --}}
+
+                </td>
+                <td> {{-- ekle --}}
                     <x-add-button />
                 </td>
             </tr>

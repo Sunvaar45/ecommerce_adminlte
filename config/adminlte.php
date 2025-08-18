@@ -326,6 +326,12 @@ return [
             'icon' => 'fas fa-fw fa-box',
         ],
         [
+            'text' => 'Ürün Görselleri',
+            'route' => 'product-images.edit',
+            'icon' => 'fas fa-fw fa-images',
+        ],
+
+        [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
