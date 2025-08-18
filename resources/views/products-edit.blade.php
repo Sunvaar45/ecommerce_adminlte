@@ -112,7 +112,7 @@
                         />
                     </td>
                     <td> {{-- ait olduğu kategori --}}
-                        <select name="products[{{ $i }}][category_id]" class="form-control" required>
+                        <select name="products[{{ $i }}][category_id]" class="form-control">
                             <option value="">Kategori Seçiniz</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
@@ -121,7 +121,9 @@
                                 </option>
                             @endforeach
                         </select>
-
+                        @error('products.' . $i . '.category_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </td>
                     <td> {{-- aktif durumu --}}
                         <x-checkbox-input
@@ -205,6 +207,9 @@
                             </option>
                         @endforeach
                     </select>
+                    @error('new_category_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </td>
                 <td> {{-- aktif durumu --}}
                     <x-checkbox-input
