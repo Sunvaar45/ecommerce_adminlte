@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Storage;
 
 trait handleFileUpload
 {
-    protected function handleImageUpload($request, $fieldName, $directory = 'storage/images', $oldFileName)
+    protected function handleImageUpload($request, $fieldName, $directory, $oldFileName)
     {
         if (!$request->hasFile($fieldName)) {
-            return $oldFileName; // No new file uploaded, return old file name
+            return null; // No new file uploaded, return old file name
         }
 
         // delete old file if it exists

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Kategori Düzenle')
+@section('title', 'Ürün Düzenle')
 
 @section('content_header')
-<h1>Kategori Düzenle</h1>
+<h1>Ürün Düzenle</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
     </div>
 @endif
 
-<form method="POST" action="{{ route('categories.update') }}">
+<form method="POST" action="{{ route('products.update') }}" enctype="multipart/form-data">
     @csrf
 
     <table class="table table-bordered">
@@ -28,8 +28,8 @@
         <tbody>
             @foreach ($products as $i => $product)
                 @php
-    $namePrefixBracket = 'products[' . $i . ']';
-    $namePrefixDot = 'products.' . $i . '.';
+                    $namePrefixBracket = 'products[' . $i . ']';
+                    $namePrefixDot = 'products.' . $i . '.';
                 @endphp
                 <tr>
                     <td>
@@ -104,13 +104,14 @@
                     <td> {{-- görsel --}}
                         
                         {{-- display image --}}
-                        <img src="{{ asset('storage/images/' . $product->id . '/' . $product->image_url) }}"
-                            alt="{{ $product->name }}"
+                        <img src="{{ asset('storage/images/products/' . $product->id . '/' . $product->image_url) }}"
+                            alt="Mevcut Görsel"
+                            style="max-width: 100px; height: auto;"
                             class="img-thumbnail">
 
                         {{-- file input --}}
                         <input type="file"
-                            name="products[{{ $i }}][image]"
+                            name="products[{{ $i }}][image_url]"
                             class="form-control">
                     </td>
                     <td> {{-- ait olduğu kategori --}}
