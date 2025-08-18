@@ -27,7 +27,9 @@ class ProductsController extends Controller
     {
         // delete
         if ($request->has('remove')) {
-
+            $id = $request->input('remove');
+            $product = Products::findOrFail($id);
+            $product->delete();
 
             return redirect()->route('products.edit')
                 ->with('success', 'Ürün başarıyla silindi.');
