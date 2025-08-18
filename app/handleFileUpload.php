@@ -20,7 +20,6 @@ trait handleFileUpload
         // store new file
         $file = $request->file($fieldName);
         $fileName = time() . '_' . $file->getClientOriginalName();
-        // $fileName = time() . '_' . $fieldName;
         $file->storeAs($directory, $fileName, 'public');
         
         return $fileName; // Return the new file name
