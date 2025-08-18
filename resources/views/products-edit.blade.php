@@ -28,19 +28,21 @@
         <tbody>
             @foreach ($products as $i => $product)
                 @php
-                    $namePrefix = 'products[' . $i . ']';
-                    $dotNamePrefix = 'products.' . $i . '.';
+                    $namePrefixBracket = 'products[' . $i . ']';
+                    $namePrefixDot = 'products.' . $i . '.';
                 @endphp
                 <tr>
                     <td>
                         <x-id-input 
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :model="$product"
                         />
                     </td>
                     <td> {{-- isim --}}
                         <x-text-input 
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'name'"
                             :model="$product"
                             :required="true"
@@ -48,7 +50,8 @@
                     </td>
                     <td> {{-- açıklama --}}
                         <x-text-input 
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'description'"
                             :model="$product"
                             :required="false"
@@ -56,7 +59,8 @@
                     </td>
                     <td> {{-- fiyat --}}
                         <x-price-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'price'"
                             :model="$product"
                             :required="true"
@@ -64,14 +68,16 @@
                     </td>
                     <td> {{-- indirim aktif checkbox --}}
                         <x-checkbox-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'has_discount'"
                             :model="$product"
                         />
                     </td>
                     <td> {{-- indirimli fiyat --}}
                         <x-price-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'discount_price'"
                             :model="$product"
                             :required="true"
@@ -79,7 +85,8 @@
                     </td>
                     <td> {{-- stok miktarı --}}
                         <x-integer-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'stock'"
                             :model="$product"
                             :required="true"
@@ -87,7 +94,8 @@
                     </td>
                     <td> {{-- renk --}}
                         <x-text-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'color'"
                             :model="$product"
                             :required="false"
@@ -119,7 +127,8 @@
                     </td>
                     <td> {{-- aktif durumu --}}
                         <x-checkbox-input
-                            :namePrefix="'products[' . $i . ']'"
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
                             :column="'status'"
                             :model="$product"
                         />

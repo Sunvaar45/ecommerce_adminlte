@@ -1,22 +1,20 @@
-@php
-$dotName = null;
-if (isset($namePrefix)) {
-    $dotName = str_replace(['[', ']'], ['.', ''], $namePrefix) . '.' . $column;
-}
-else {
-    $dotName = $column;
-}
-@endphp
-
 <input type="number"
-    name="{{ isset($namePrefix) ? $namePrefix . '[' . $column . ']' : $column }}"
-    value="{{ old($dotName, $model->$column ?? 0) }}"
+    @if (isset($namePrefixBracket) && isset($namePrefixDot))
+        name="{{ $namePrefixBracket . '[' . $column . ']' }}"
+        value="{{ old($namePrefixDot . $column, $model->$column ?? 0) }}"
+    @else
+        name="{{ $column }}"
+        value="{{ old($column, $model->$column ?? 0) }}"
+    @endif
+
     class="form-control"
     min="0"
     step="1"
     @if(isset($required) && $required) required @endif
     >
 
-@error($dotName)
-    <div class="text-danger">{{ $message }}</div>
-@enderror
+@if (isset($namePrefixDot))
+    <x-validation-error :column="$namePrefixDot . $column" />
+@else
+    <x-validation-error :column="$column" />
+@endif
