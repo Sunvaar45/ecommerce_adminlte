@@ -88,7 +88,6 @@
     </table>
 
     <x-update-buttons />
-
 </form>
 @stop
 

@@ -8,8 +8,8 @@ use Illuminate\View\Component;
 
 class priceInput extends Component
 {
-    public string $namePrefixBracket;
-    public string $namePrefixDot;
+    public ?string $namePrefixBracket;
+    public ?string $namePrefixDot;
     public string $column;
     public $model;
     public bool $required;
@@ -17,7 +17,7 @@ class priceInput extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $namePrefixBracket, string $namePrefixDot, string $column, $model, bool $required)
+    public function __construct(?string $namePrefixBracket = null, ?string $namePrefixDot = null, string $column, $model, bool $required)
     {
         $this->namePrefixBracket = $namePrefixBracket;
         $this->namePrefixDot = $namePrefixDot;

@@ -107,7 +107,7 @@
                             :namePrefixDot="$namePrefixDot"
                             :column="'image_url'"
                             :model="$product"
-                            :imageDir="'storage/images/products/' . $product->id . '/'"
+                            :imageDir="'storage/images/products/'"
                             :maxWidth="'100px'"
                         />
                     </td>
@@ -138,6 +138,84 @@
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <td>Yeni</td>
+                <td> {{-- ürün adı --}}
+                    <x-text-input 
+                        :column="'new_name'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td> {{-- açıklama --}}
+                    <x-text-input 
+                        :column="'new_description'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td> {{-- fiyat --}}
+                    <x-price-input
+                        :column="'new_price'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td> {{-- indirim aktif --}}
+                    <x-checkbox-input
+                        :column="'new_has_discount'"
+                        :model="null"
+                    />
+                </td>
+                <td> {{-- indirimli fiyat --}}
+                    <x-price-input
+                        :column="'new_discount_price'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td> {{-- stok miktarı --}}
+                    <x-integer-input
+                        :column="'new_stock'"
+                        :model="null"
+                        :required="true"
+                    />
+                </td>
+                <td> {{-- renk --}}
+                    <x-text-input
+                        :column="'new_color'"
+                        :model="null"
+                        :required="false"
+                    />
+                </td>
+                <td> {{-- görsel --}}
+                    <x-image-upload
+                        :column="'new_image_url'"
+                        :model="null"
+                        :imageDir="'storage/images/products/'"
+                        :maxWidth="'100px'"
+                    />
+                </td>
+                <td> {{-- ait olduğu kategori --}}
+                    <select name="new_category_id" class="form-control" required>
+                        <option value="" selected>Kategori Seçiniz</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->id . ' - ' . $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td> {{-- aktif durumu --}}
+                    <x-checkbox-input
+                        :column="'new_status'"
+                        :model="null"
+                    />
+                </td>
+                <td> {{-- ekleme butonu --}}
+                    <x-add-button />
+                </td>
+            </tr>
         </tbody>
     </table>
 

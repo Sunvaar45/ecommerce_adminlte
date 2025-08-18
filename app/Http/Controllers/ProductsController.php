@@ -32,7 +32,7 @@ class ProductsController extends Controller
 
         // add
         if ($request->has('add')) {
-
+            
         }
 
         // update
@@ -68,7 +68,7 @@ class ProductsController extends Controller
                 ]);
 
                 // update image
-                $imageDir = 'images/products/' . $product->id;
+                $imageDir = 'images/products/';
                 $newImageName = $this->handleImageUpload($request, "products.$i.image_url", $imageDir, $product->image_url ?? null);
                 if ($newImageName) {
                     $productData['image_url'] = $newImageName;

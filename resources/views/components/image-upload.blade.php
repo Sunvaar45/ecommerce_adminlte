@@ -1,8 +1,10 @@
 {{-- display image --}}
-<img src="{{ asset($imageDir . $model->$column) }}"
-    alt="Mevcut Görsel"
-    style="max-width: {{ $maxWidth }}; height: auto;"
-    class="img-thumbnail">
+@if ($model != null)
+    <img src="{{ asset($imageDir . $model->$column) }}"
+        alt="Mevcut Görsel"
+        style="max-width: {{ $maxWidth }}; height: auto;"
+        class="img-thumbnail">
+@endif
 
 {{-- file input --}}
 <input type="file"

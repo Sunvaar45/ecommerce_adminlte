@@ -9,15 +9,15 @@ use Illuminate\View\Component;
 class integerInput extends Component
 {
     public string $column;
-    public string $namePrefixBracket;
-    public string $namePrefixDot;
+    public ?string $namePrefixBracket;
+    public ?string $namePrefixDot;
     public $model;
     public bool $required;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $column, string $namePrefixBracket, string $namePrefixDot, $model, bool $required = false)
+    public function __construct(string $column, ?string $namePrefixBracket = null, ?string $namePrefixDot = null, $model, bool $required = false)
     {
         $this->column = $column;
         $this->namePrefixBracket = $namePrefixBracket;
