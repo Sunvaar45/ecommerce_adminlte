@@ -15,7 +15,7 @@ class ProductsController extends Controller
     {
         $products = Products::all();
         $categories = Categories::all();
-        $columns = ['ID', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok', 'Renk', 'Görsel', 'Kategori', 'Aktif'];
+        $columns = ['ID', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Görsel', 'Kategori', 'Aktif'];
         return view('products-edit', [
             'products' => $products,
             'categories' => $categories,

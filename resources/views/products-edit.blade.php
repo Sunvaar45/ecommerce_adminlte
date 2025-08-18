@@ -102,17 +102,14 @@
                         />
                     </td>
                     <td> {{-- görsel --}}
-                        
-                        {{-- display image --}}
-                        <img src="{{ asset('storage/images/products/' . $product->id . '/' . $product->image_url) }}"
-                            alt="Mevcut Görsel"
-                            style="max-width: 100px; height: auto;"
-                            class="img-thumbnail">
-
-                        {{-- file input --}}
-                        <input type="file"
-                            name="products[{{ $i }}][image_url]"
-                            class="form-control">
+                        <x-image-upload
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'image_url'"
+                            :model="$product"
+                            :imageDir="'storage/images/products/' . $product->id . '/'"
+                            :maxWidth="'100px'"
+                        />
                     </td>
                     <td> {{-- ait olduğu kategori --}}
                         <select name="products[{{ $i }}][category_id]" class="form-control" required>
@@ -152,6 +149,12 @@
 {{-- Add here extra stylesheets --}}
 {{--
 <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+<style>
+    td, th {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
 @stop
 
 @section('js')

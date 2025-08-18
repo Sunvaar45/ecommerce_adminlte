@@ -1,18 +1,20 @@
-{{-- TEXT INPUT --}}
-<input type="text"
+{{-- display image --}}
+<img src="{{ asset($imageDir . $model->$column) }}"
+    alt="Mevcut Görsel"
+    style="max-width: {{ $maxWidth }}; height: auto;"
+    class="img-thumbnail">
+
+{{-- file input --}}
+<input type="file"
     @if (isset($namePrefixBracket) && isset($namePrefixDot))
         name="{{ $namePrefixBracket . '[' . $column . ']' }}"
-        value="{{ old($namePrefixDot . $column, $model->$column ?? '') }}"
     @else
         name="{{ $column }}"
-        value="{{ old($column, $model->$column ?? '') }}"
     @endif
-    class="form-control"
-    @if(isset($required) && $required) required @endif
-    >
+    class="form-control">
 
 {{-- error handling --}}
-@if (isset($namePrefixBracket) && isset($namePrefixDot)) 
+@if (isset($namePrefixBracket) && isset($namePrefixDot))
     <x-validation-error :column="$namePrefixDot . $column" />
 @else
     <x-validation-error :column="$column" />
