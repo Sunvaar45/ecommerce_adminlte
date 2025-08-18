@@ -47,7 +47,7 @@ class CategoriesController extends Controller
         $request->validate([
             'categories' => ['required', 'array'],
             'categories.*.id' => ['required', 'integer', 'exists:categories,id'],
-            'categories.*.name' => ['required', 'string', 'max:15'],
+            'categories.*.name' => ['required', 'string', 'max:255'],
             'categories.*.status' => ['required', 'boolean'],
         ]);
 

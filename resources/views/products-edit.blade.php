@@ -28,8 +28,8 @@
         <tbody>
             @foreach ($products as $i => $product)
                 @php
-                    $namePrefixBracket = 'products[' . $i . ']';
-                    $namePrefixDot = 'products.' . $i . '.';
+    $namePrefixBracket = 'products[' . $i . ']';
+    $namePrefixDot = 'products.' . $i . '.';
                 @endphp
                 <tr>
                     <td>
@@ -154,5 +154,6 @@
 @stop
 
 @section('js')
+<script src="{{ asset('js/hideAlerts.js') }}"></script>
 
 @stop
