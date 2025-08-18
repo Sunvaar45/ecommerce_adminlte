@@ -197,7 +197,7 @@
                     />
                 </td>
                 <td> {{-- ait olduğu kategori --}}
-                    <select name="new_category_id" class="form-control" required>
+                    <select name="new_category_id" class="form-control">
                         <option value="" selected>Kategori Seçiniz</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">

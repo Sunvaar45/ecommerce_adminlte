@@ -28,11 +28,48 @@ class ProductsController extends Controller
         // delete
         if ($request->has('remove')) {
 
+
+            return redirect()->route('products.edit')
+                ->with('success', 'Ürün başarıyla silindi.');
         }
 
         // add
         if ($request->has('add')) {
-            
+            $request->validate([
+                'new_name' => ['required', 'string', 'max:255'],
+                'new_description' => ['nullable', 'string'],
+                'new_price' => ['required', 'numeric', 'min:0'],
+                'new_has_discount' => ['boolean'],
+                'new_discount_price' => ['nullable', 'numeric', 'min:0'],
+                'new_stock' => ['required', 'integer', 'min:0'],
+                'new_color' => ['nullable', 'string', 'max:255'],
+                'new_image_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'new_category_id' => ['required', 'integer', 'exists:categories,id'],
+                'new_status' => ['boolean'],
+            ]);
+
+            $newProduct = Products::create([
+                'name' => $request->input('new_name'),
+                'description' => $request->input('new_description'),
+                'price' => $request->input('new_price'),
+                'has_discount' => $request->input('new_has_discount'),
+                'discount_price' => $request->input('new_discount_price'),
+                'stock' => $request->input('new_stock'),
+                'color' => $request->input('new_color'),
+                'image_url' => null,
+                'category_id' => $request->input('new_category_id'),
+                'status' => $request->input('new_status'),
+            ]);
+
+            $imageDir = 'images/products/';
+            $newImageName = $this->handleImageUpload($request, 'new_image_url', $imageDir, null);
+            if ($newImageName) {
+                $newProduct->image_url = $newImageName;
+            }
+
+            $newProduct->save();
+            return redirect()->route('products.edit')
+                ->with('success', 'Ürün başarıyla eklendi.');
         }
 
         // update
