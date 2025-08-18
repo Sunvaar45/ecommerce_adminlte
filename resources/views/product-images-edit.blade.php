@@ -80,7 +80,14 @@
                     
                 </td>
                 <td> {{-- görsel --}}
-                    
+                    <x-image-upload 
+                        :namePrefixBracket="$namePrefixBracket"
+                        :namePrefixDot="$namePrefixDot"
+                        :column="'image_url'"
+                        :model="null"
+                        :imageDir="'storage/images/products/'"
+                        :maxWidth="'100px'"
+                    />
                 </td>
                 <td> {{-- görsel alt metin --}}
 
