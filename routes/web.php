@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductImagesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,9 @@ Route::prefix('/admin/categories')->group(function () {
 Route::prefix('/admin/products')->group(function () {
     Route::get('/', [ProductsController::class, 'edit'])->name('products.edit');
     Route::post('/update', [ProductsController::class, 'update'])->name('products.update');
+});
+
+Route::prefix('/admin/product-images')->group(function () {
+    Route::get('/', [ProductImagesController::class, 'edit'])->name('product-images.edit');
+    Route::post('/update', [ProductImagesController::class, 'update'])->name('product-images.update');
 });
