@@ -50,10 +50,8 @@
                         />
                     </td>
                     <td>
-                        <x-checkbox-input
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'status'"
+                        <x-toggle-state 
+                            :table="'categories'"
                             :model="$category"
                         />
                     </td>

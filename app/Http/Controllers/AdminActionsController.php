@@ -26,7 +26,7 @@ class AdminActionsController extends Controller
 
         if ($item) {
             $newState = 0;
-            if ($item->is_active == 0) {
+            if ($item->status == 0) {
                 $newState = 1;
             }
 
