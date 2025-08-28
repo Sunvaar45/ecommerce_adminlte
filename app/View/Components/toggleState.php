@@ -8,12 +8,18 @@ use Illuminate\View\Component;
 
 class toggleState extends Component
 {
+    public string $table;
+    public $model;
+    public string $column;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(string $table, $model, string $column = 'status')
     {
-        //
+        $this->table = $table;
+        $this->model = $model;
+        $this->column = $column;
     }
 
     /**
