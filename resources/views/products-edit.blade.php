@@ -121,15 +121,14 @@
                         /> 
                     </td>
                     <td> {{-- aktif durumu --}}
-                        <x-checkbox-input
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'status'"
+                        <x-toggle-state 
+                            :table="'products'"
                             :model="$product"
                         />
                     </td>
                     <td> {{-- silme butonu --}}
-                        <x-remove-button 
+                        <x-remove-button
+                            :table="'products'"
                             :model="$product"
                         />
                     </td>
@@ -194,24 +193,13 @@
                     />
                 </td>
                 <td> {{-- ait olduğu kategori --}}
-                    <select name="new_category_id" class="form-control">
-                        <option value="" selected>Kategori Seçiniz</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->id . ' - ' . $category->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('new_category_id')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </td>
-                <td> {{-- aktif durumu --}}
-                    <x-checkbox-input
-                        :column="'new_status'"
+                    <x-dropdown-input
+                        :column="'new_category_id'"
                         :model="null"
-                    />
+                        :options="$categoriesArray"
+                    /> 
                 </td>
+                <td><strong>Pasif</strong></td>
                 <td> {{-- ekleme butonu --}}
                     <x-add-button />
                 </td>

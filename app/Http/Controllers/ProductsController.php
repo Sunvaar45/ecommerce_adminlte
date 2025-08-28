@@ -33,16 +33,6 @@ class ProductsController extends Controller
 
     public function update(Request $request) 
     {
-        // delete
-        if ($request->has('remove')) {
-            $id = $request->input('remove');
-            $product = Products::findOrFail($id);
-            $product->delete();
-
-            return redirect()->route('products.edit')
-                ->with('success', 'Ürün başarıyla silindi.');
-        }
-
         // add
         if ($request->has('add')) {
             $request->validate([
@@ -55,7 +45,6 @@ class ProductsController extends Controller
                 'new_color' => ['nullable', 'string', 'max:255'],
                 'new_image_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'new_category_id' => ['required', 'integer', 'exists:categories,id'],
-                'new_status' => ['boolean'],
             ]);
 
             $newProduct = Products::create([
@@ -68,7 +57,7 @@ class ProductsController extends Controller
                 'color' => $request->input('new_color'),
                 'image_url' => null,
                 'category_id' => $request->input('new_category_id'),
-                'status' => $request->input('new_status'),
+                'status' => 0,
             ]);
 
             $imageDir = 'images/products/';
@@ -95,7 +84,6 @@ class ProductsController extends Controller
             'products.*.color' => ['nullable', 'string', 'max:255'],
             'products.*.image_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'products.*.category_id' => ['required', 'integer', 'exists:categories,id'],
-            'products.*.status' => ['boolean'],
         ]);
 
         foreach ($request->products as $i => $productData) {
@@ -111,7 +99,6 @@ class ProductsController extends Controller
                     'stock' => $productData['stock'],
                     'color' => $productData['color'],
                     'category_id' => $productData['category_id'],
-                    'status' => $productData['status'],
                 ]);
 
                 // update image
