@@ -57,6 +57,7 @@
                     </td>
                     <td>
                         <x-remove-button 
+                            :table="'categories'"
                             :model="$category"
                         />                   
                     </td>

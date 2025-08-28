@@ -10,7 +10,7 @@ class CategoriesController extends Controller
 {
     public function edit()
     {
-        $categories = Categories::all();
+        $categories = Categories::whereIn('status', [0, 1])->get();
         $columns = ['ID', 'İsim', 'Aktif'];
         return view('categories-edit', [
             'categories' => $categories,
