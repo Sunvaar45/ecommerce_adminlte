@@ -112,6 +112,14 @@
                         />
                     </td>
                     <td> {{-- ait olduğu kategori --}}
+                        <x-dropdown-input
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'category_id'"
+                            :model="$product"
+                            :options="$categoriesArray"
+                        />
+
                         <select name="products[{{ $i }}][category_id]" class="form-control">
                             <option value="">Kategori Seçiniz</option>
                             @foreach ($categories as $category)
