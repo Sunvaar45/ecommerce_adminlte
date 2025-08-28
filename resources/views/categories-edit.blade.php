@@ -72,10 +72,7 @@
                     />
                 </td>
                 <td>
-                    <x-checkbox-input
-                        :column="'new_status'"
-                        :model="null"
-                    />
+                    <strong>PASİF</strong>
                 </td>
                 <td>
                     <x-add-button />

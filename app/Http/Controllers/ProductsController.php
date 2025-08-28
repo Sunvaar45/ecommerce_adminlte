@@ -14,8 +14,11 @@ class ProductsController extends Controller
     public function edit()
     {
         $products = Products::all();
-        $categories = Categories::all();
+        $categories = Categories::whereIn('status', [0, 1])->get();
         $categoriesArray = $categories->mapWithKeys(function($category) {
+            if ($category->status == 0) {
+                return [$category->id => "{$category->id} - {$category->name} - Deaktif"];
+            }
             return [$category->id => "{$category->id} - {$category->name}"];
         })->toArray();
 

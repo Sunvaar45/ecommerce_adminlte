@@ -20,24 +20,14 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
-        // delete
-        if ($request->has('remove')) {
-            $id = $request->input('remove');
-            $category = Categories::findOrFail($id);
-            $category->delete();
-            return redirect()->route('categories.edit')
-                ->with('success', 'Kategori başarıyla silindi.');
-        }
-
         // add
         if ($request->has('add')) {
             $request->validate([
                 'new_name' => ['required', 'string', 'max:255'],
-                'new_status' => ['required', 'boolean'],
             ]);
             Categories::create([
                 'name' => $request->input('new_name'),
-                'status' => $request->input('new_status'),
+                'status' => 0,
             ]);
             return redirect()->route('categories.edit')
                 ->with('success', 'Kategori başarıyla eklendi.');
@@ -48,7 +38,6 @@ class CategoriesController extends Controller
             'categories' => ['required', 'array'],
             'categories.*.id' => ['required', 'integer', 'exists:categories,id'],
             'categories.*.name' => ['required', 'string', 'max:255'],
-            'categories.*.status' => ['required', 'boolean'],
         ]);
 
         foreach ($request->categories as $categoryData) {
@@ -56,7 +45,6 @@ class CategoriesController extends Controller
             if ($category) {
                 $category->update([
                     'name' => $categoryData['name'],
-                    'status' => $categoryData['status'],
                 ]);
             }
         }
