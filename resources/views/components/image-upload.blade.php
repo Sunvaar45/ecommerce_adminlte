@@ -1,3 +1,5 @@
+@props(['namePrefixBracket' => null, 'namePrefixDot' => null, 'column' => null, 'model' => null, 'imageDir' => null, 'maxWidth' => null])
+
 {{-- display image --}}
 @if ($model != null)
     <img src="{{ asset($imageDir . $model->$column) }}"

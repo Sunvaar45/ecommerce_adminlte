@@ -1,3 +1,5 @@
+@props(['namePrefixBracket' => null, 'namePrefixDot' => null, 'model' => null])
+
 <input type="hidden"
     @if (isset($namePrefixBracket) && isset($namePrefixDot))
         name="{{ $namePrefixBracket . '[id]' }}"

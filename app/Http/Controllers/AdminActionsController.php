@@ -16,7 +16,6 @@ class AdminActionsController extends Controller
 
         return redirect()->back()
             ->with('success', 'Kayıt silindi.');
-
     }
 
     public function setActiveState($table, $id)
