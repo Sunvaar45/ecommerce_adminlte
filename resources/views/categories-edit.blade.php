@@ -71,9 +71,7 @@
                         :required="false"
                     />
                 </td>
-                <td>
-                    <strong>PASİF</strong>
-                </td>
+                <td><strong>Pasif</strong></td>
                 <td>
                     <x-add-button />
                 </td>
