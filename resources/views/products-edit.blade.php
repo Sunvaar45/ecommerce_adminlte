@@ -118,20 +118,7 @@
                             :column="'category_id'"
                             :model="$product"
                             :options="$categoriesArray"
-                        />
-
-                        <select name="products[{{ $i }}][category_id]" class="form-control">
-                            <option value="">Kategori Seçiniz</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    @if ($product->category_id == $category->id) selected @endif>
-                                    {{ $category->id . ' - ' . $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('products.' . $i . '.category_id')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                        /> 
                     </td>
                     <td> {{-- aktif durumu --}}
                         <x-checkbox-input
