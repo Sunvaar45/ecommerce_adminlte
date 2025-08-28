@@ -1,3 +1,5 @@
+@props(['namePrefixBracket' => null, 'namePrefixDot' => null, 'column' => null, 'model' => null, 'required' => false])
+
 <input type="number"
     @if (isset($namePrefixBracket) && isset($namePrefixDot))
         name="{{ $namePrefixBracket . '[' . $column . ']' }}"

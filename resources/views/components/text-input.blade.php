@@ -1,3 +1,5 @@
+@props(['namePrefixBracket' => null, 'namePrefixDot' => null, 'column' => null, 'model' => null, 'required' => false])
+
 {{-- TEXT INPUT --}}
 <input type="text"
     @if (isset($namePrefixBracket) && isset($namePrefixDot))
