@@ -107,7 +107,7 @@
                             :namePrefixDot="$namePrefixDot"
                             :column="'image_url'"
                             :model="$product"
-                            :imageDir="'storage/images/products/'"
+                            :imageDir="'images/products'"
                             :maxWidth="'100px'"
                         />
                     </td>
@@ -188,7 +188,7 @@
                     <x-image-upload
                         :column="'new_image_url'"
                         :model="null"
-                        :imageDir="'storage/images/products/'"
+                        :imageDir="'images/products'"
                         :maxWidth="'100px'"
                     />
                 </td>

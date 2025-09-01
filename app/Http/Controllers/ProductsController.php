@@ -61,7 +61,12 @@ class ProductsController extends Controller
             ]);
 
             $imageDir = 'images/products/';
-            $newImageName = $this->handleImageUpload($request, 'new_image_url', $imageDir, null);
+            $newImageName = $this->handleImageUpload(
+                $request,
+                'new_image_url',
+                $imageDir,
+                null
+            );
             if ($newImageName) {
                 $newProduct->image_url = $newImageName;
             }
@@ -103,7 +108,12 @@ class ProductsController extends Controller
 
                 // update image
                 $imageDir = 'images/products/';
-                $newImageName = $this->handleImageUpload($request, "products.$i.image_url", $imageDir, $product->image_url ?? null);
+                $newImageName = $this->handleImageUpload(
+                    $request,
+                    "products.$i.image_url",
+                    $imageDir,
+                    $product->image_url ?? null
+                );
                 if ($newImageName) {
                     $productData['image_url'] = $newImageName;
                     $product->update(['image_url' => $newImageName]);

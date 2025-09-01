@@ -11,11 +11,11 @@ trait handleFileUpload
         $fieldName,
         $directory,
         $oldFileName = null,
-        $disc = null,
+        $disk = null,
     ) {
 
-        if (!$disc) {
-            $disc = env('MAIN_STORAGE_DISK', 'public');
+        if (!$disk) {
+            $disk = env('MAIN_STORAGE_DISK', 'public');
         }
 
         if (!$request->hasFile($fieldName)) {
@@ -23,15 +23,17 @@ trait handleFileUpload
         }
 
         // delete old file if it exists
-        if ($oldFileName && Storage::disk('public')->exists($directory . '/' . $oldFileName)) {
-            Storage::disk('public')->delete($directory . '/' . $oldFileName);
+        if ($oldFileName && Storage::disk($disk)->exists($directory . '/' . $oldFileName)) {
+            Storage::disk($disk)->delete($directory . '/' . $oldFileName);
         }
 
-        // store new file
+        // grab and name the file
         $file = $request->file($fieldName);
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs($directory, $fileName, 'public');
         
+        // save the file in main project storage
+        Storage::disk($disk)->putFileAs($directory, $file, $fileName);
+
         return $fileName; // Return the new file name
     }
 }
