@@ -39,6 +39,7 @@
                             :namePrefixDot="$namePrefixDot"
                             :model="$productImage"
                         />
+                        {{ $productImage->id }}
                     </td>
                     <td> {{-- ait olduğu ürün --}}
                         <x-dropdown-input

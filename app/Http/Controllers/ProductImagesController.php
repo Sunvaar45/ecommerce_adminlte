@@ -79,6 +79,28 @@ class ProductImagesController extends Controller
             'productImages.*.sort_order' => ['required', 'integer', 'min:0'],
         ]);
 
+        foreach ($request->productImages as $i => $productImageData) {
+            $productImage = ProductImages::find($productImageData['id']);
+            if ($productImage) {
+                $productImage->update([
+                    'image_alt' => $productImageData['image_alt'],
+                    'sort_order' => $productImageData['sort_order'],
+                ]);
+
+                $imageDir = 'images/products';
+                $newImageName = $this->handleImageUpload(
+                    $request,
+                    'productImages.' . $i . '.image_url',
+                    $imageDir,
+                    $productImage->image_url ?? null
+                );
+                if ($newImageName) {
+                    $productImageData['image_url'] = $newImageName;
+                    $productImage->update(['image_url' => $newImageName]);
+                }
+            }
+        }
+
         return redirect()->route('product-images.edit')
             ->with('success', 'Ürün Görselleri Güncellendi.');
     }
