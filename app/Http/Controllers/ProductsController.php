@@ -37,13 +37,13 @@ class ProductsController extends Controller
         if ($request->has('add')) {
             $request->validate([
                 'new_name' => ['required', 'string', 'max:255'],
-                'new_description' => ['nullable', 'string'],
+                'new_description' => ['required', 'string'],
                 'new_price' => ['required', 'numeric', 'min:0'],
                 'new_has_discount' => ['boolean'],
                 'new_discount_price' => ['nullable', 'numeric', 'min:0'],
                 'new_stock' => ['required', 'integer', 'min:0'],
-                'new_color' => ['nullable', 'string', 'max:255'],
-                'new_image_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'new_color' => ['required', 'string', 'max:255'],
+                'new_image_url' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'new_category_id' => ['required', 'integer', 'exists:categories,id'],
             ]);
 
