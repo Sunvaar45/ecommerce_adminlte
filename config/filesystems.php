@@ -47,6 +47,13 @@ return [
             'report' => false,
         ],
 
+        'main_public' => [
+            'driver' => 'local',
+            'root' => env('MAIN_PROJECT_PUBLIC_STORAGE'),
+            'url' => env('MAIN_PROJECT_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

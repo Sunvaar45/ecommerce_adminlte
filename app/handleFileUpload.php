@@ -6,8 +6,18 @@ use Illuminate\Support\Facades\Storage;
 
 trait handleFileUpload
 {
-    protected function handleImageUpload($request, $fieldName, $directory, $oldFileName)
-    {
+    protected function handleImageUpload(
+        $request,
+        $fieldName,
+        $directory,
+        $oldFileName = null,
+        $disc = null,
+    ) {
+
+        if (!$disc) {
+            $disc = env('MAIN_STORAGE_DISK', 'public');
+        }
+
         if (!$request->hasFile($fieldName)) {
             return null; // No new file uploaded, return old file name
         }
