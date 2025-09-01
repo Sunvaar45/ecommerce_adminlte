@@ -14,6 +14,7 @@ trait handleFileUpload
         $disk = null,
     ) {
 
+        // Determine the main project as storage disk to use
         if (!$disk) {
             $disk = env('MAIN_STORAGE_DISK', 'public');
         }
