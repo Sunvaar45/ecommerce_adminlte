@@ -27,4 +27,11 @@ class Products extends Model
     {
         return $this->belongsTo(Categories::class, 'category_id');
     }
+
+    public function mainImage()
+    {
+        return $this->hasOne(ProductImages::class, 'product_id')
+            ->where('is_main', 1)
+            ->where('status', 1);
+    }
 }
