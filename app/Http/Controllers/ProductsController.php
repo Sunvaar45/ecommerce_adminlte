@@ -13,7 +13,7 @@ class ProductsController extends Controller
 
     public function edit()
     {
-        $products = Products::all();
+        $products = Products::whereIn('status', [0, 1])->get();
         $categories = Categories::whereIn('status', [0, 1])->get();
         $categoriesArray = $categories->mapWithKeys(function($category) {
             if ($category->status == 0) {
@@ -60,7 +60,7 @@ class ProductsController extends Controller
                 'status' => 0,
             ]);
 
-            $imageDir = 'images/products/';
+            $imageDir = 'images/products/' . $newProduct->id;
             $newImageName = $this->handleImageUpload(
                 $request,
                 'new_image_url',
@@ -107,7 +107,7 @@ class ProductsController extends Controller
                 ]);
 
                 // update image
-                $imageDir = 'images/products/';
+                $imageDir = 'images/products/' . $product->id;
                 $newImageName = $this->handleImageUpload(
                     $request,
                     "products.$i.image_url",

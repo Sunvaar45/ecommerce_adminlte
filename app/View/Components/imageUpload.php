@@ -12,7 +12,7 @@ class imageUpload extends Component
     public $model;
     public ?string $namePrefixBracket;
     public ?string $namePrefixDot;
-    public string $imageDir;
+    public ?string $imageDir;
     public string $maxWidth;
 
     /**
@@ -23,7 +23,7 @@ class imageUpload extends Component
         $model,
         ?string $namePrefixBracket = null,
         ?string $namePrefixDot = null,
-        string $imageDir,
+        ?string $imageDir = null,
         string $maxWidth
     ) {
         $this->column = $column;
