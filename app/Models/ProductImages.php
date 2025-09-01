@@ -15,6 +15,8 @@ class ProductImages extends Model
         'product_id',
         'image_url',
         'image_alt',
+        'sort_order',
+        'is_main',
         'status',
     ];
 }
