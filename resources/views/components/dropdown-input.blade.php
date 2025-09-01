@@ -21,3 +21,10 @@
         </option>
     @endforeach
 </select>
+
+{{-- error handling --}}
+@if (isset($namePrefixBracket) && isset($namePrefixDot))
+    <x-validation-error :column="$namePrefixDot . $column" />
+@else
+    <x-validation-error :column="$column" />
+@endif
