@@ -8,11 +8,8 @@
 
 @section('content')
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+<x-success-alert />
+<x-info-alert />
 
 <form method="POST" action="{{ route('product-images.update') }}" enctype="multipart/form-data">
     @csrf
@@ -77,7 +74,14 @@
                         />
                     </td>
                     <td> {{-- is main --}}
-
+                        <a href="{{ route('product-images.set-main', $productImage->id) }}"
+                        class="btn btn-sm {{ $productImage->is_main == 1 ? 'btn-primary' : 'btn-secondary' }}">
+                            @if ($productImage->is_main == 1)
+                                <strong>Evet</strong>
+                            @else
+                                <strong>Hayır</strong>
+                            @endif
+                        </a>
                     </td>
                     <td> {{-- status --}}
                         <x-toggle-state

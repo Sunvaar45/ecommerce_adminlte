@@ -30,4 +30,5 @@ Route::prefix('/admin/products')->group(function () {
 Route::prefix('/admin/product-images')->group(function () {
     Route::get('/', [ProductImagesController::class, 'edit'])->name('product-images.edit');
     Route::post('/update', [ProductImagesController::class, 'update'])->name('product-images.update');
+    Route::get('/set-main/{id}', [ProductImagesController::class, 'setMainImage'])->name('product-images.set-main');
 });

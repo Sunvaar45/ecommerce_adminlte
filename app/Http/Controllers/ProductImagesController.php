@@ -104,4 +104,30 @@ class ProductImagesController extends Controller
         return redirect()->route('product-images.edit')
             ->with('success', 'Ürün Görselleri Güncellendi.');
     }
+
+    public function setMainImage($id)
+    {
+        $productImage = ProductImages::find($id);
+        if ($productImage) {
+            
+            if ($productImage->is_main == 1) {
+                return redirect()->route('product-images.edit')
+                    ->with('info', 'Seçilen görsel zaten ana görsel olarak ayarlı.');
+            }
+
+            // Set all other images of the product to not main
+            ProductImages::where('product_id', $productImage->product_id)
+                ->update(['is_main' => 0]);
+
+            // Set the selected image as main
+            $productImage->is_main = 1;
+            $productImage->save();
+
+            return redirect()->route('product-images.edit')
+                ->with('success', 'Ana görsel başarıyla değiştirildi.');
+        }
+
+        return redirect()->route('product-images.edit')
+            ->with('error', 'Görsel bulunamadı.');
+    }
 }
