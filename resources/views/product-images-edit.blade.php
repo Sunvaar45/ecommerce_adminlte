@@ -14,7 +14,7 @@
     </div>
 @endif
 
-<form method="POST" action="{{ route('product-images.update') }}">
+<form method="POST" action="{{ route('product-images.update') }}" enctype="multipart/form-data">
     @csrf
 
     <table class="table table-bordered">

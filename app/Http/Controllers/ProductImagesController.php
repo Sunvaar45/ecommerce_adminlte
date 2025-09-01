@@ -26,7 +26,7 @@ class ProductImagesController extends Controller
             return [$product->id => "{$product->id} - {$product->name}"];
         })->toArray();
 
-        $columns = ['ID', 'Ürün', 'Görsel', 'Sıra', 'Ürün Kartı Görseli', 'Aktif'];
+        $columns = ['ID', 'Ürün', 'Görsel', 'Sıra', 'Ürün Kart Görseli Mi?', 'Aktif Mi?'];
         return view('product-images-edit', [
             'productImages' => $productImages,
             'productsArray' => $productsArray,
@@ -40,7 +40,7 @@ class ProductImagesController extends Controller
         if ($request->has('add')) {
             $request->validate([
                 'new_product_id' => ['required', 'integer', 'exists:products,id'],
-                'new_image_url' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'new_image_url' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'new_image_alt' => ['required', 'string', 'max:255'],
                 'new_sort_order' => ['required', 'integer', 'min:0'],
             ]);
@@ -71,7 +71,13 @@ class ProductImagesController extends Controller
         }
 
         // update
-
+        $request->validate([
+            'productImages' => ['required', 'array'],
+            'productImages.*.id' => ['required', 'integer', 'exists:product_images,id'],
+            'productImages.*.image_url' => ['nullable', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'productImages.*.image_alt' => ['nullable', 'string', 'max:255'],
+            'productImages.*.sort_order' => ['required', 'integer', 'min:0'],
+        ]);
 
         return redirect()->route('product-images.edit')
             ->with('success', 'Ürün Görselleri Güncellendi.');
