@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\handleFileUpload;
 use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductImagesController extends Controller
 {
+    use handleFileUpload;
+
     public function edit()
     {
         $productImages = ProductImages::whereIn('status', [0, 1])
@@ -33,23 +36,43 @@ class ProductImagesController extends Controller
 
     public function update(Request $request)
     {
-        // remove
-        if ($request->has('remove')) {
-
-
-            return redirect()->route('product-images.edit')
-                ->with('success', 'Ürün Görseli Silindi.');
-        }
-
         // add
         if ($request->has('add')) {
+            $request->validate([
+                'new_product_id' => ['required', 'integer', 'exists:products,id'],
+                'new_image_url' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'new_image_alt' => ['required', 'string', 'max:255'],
+                'new_sort_order' => ['required', 'integer', 'min:0'],
+            ]);
 
+            $newEntry = ProductImages::create([
+                'product_id' => $request->input('new_product_id'),
+                'image_url' => null,
+                'image_alt' => $request->input('new_image_alt'),
+                'sort_order' => $request->input('new_sort_order'),
+                'is_main' => 0,
+                'status' => 0,
+            ]);
 
+            $imageDir = 'images/products';
+            $newImageName = $this->handleImageUpload(
+                $request,
+                'new_image_url',
+                $imageDir,
+                null
+            );
+            if ($newImageName) {
+                $newEntry->image_url = $newImageName;
+            }
+
+            $newEntry->save();
             return redirect()->route('product-images.edit')
                 ->with('success', 'Yeni Ürün Görseli Eklendi.');
         }
 
         // update
+
+
         return redirect()->route('product-images.edit')
             ->with('success', 'Ürün Görselleri Güncellendi.');
     }

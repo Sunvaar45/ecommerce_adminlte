@@ -67,6 +67,17 @@
                             :model="$productImage"
                         />
                     </td>
+                    <td> {{-- order --}}
+                        <x-integer-input
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'sort_order'"
+                            :model="$productImage"
+                        />
+                    </td>
+                    <td> {{-- is main --}}
+
+                    </td>
                     <td> {{-- status --}}
                         <x-toggle-state
                             :table="'product_images'"
@@ -110,9 +121,11 @@
                     />
                 </td>
                 <td> {{-- is main --}}
-
+                    <strong>Hayır</strong>
                 </td>
-                <td><strong>Pasif</strong></td>
+                <td> {{-- status --}}
+                    <strong>Pasif</strong>
+                </td>
                 <td> {{-- ekle --}}
                     <x-add-button />
                 </td>
