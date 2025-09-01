@@ -30,14 +30,11 @@
                     $namePrefixDot = 'productImages.' . $i . '.';
                 @endphp
                 <tr>
-                    <td> {{-- ID --}}
-                        <x-id-input 
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :model="$productImage"
-                        />
-                        {{ $productImage->id }}
-                    </td>
+                    <x-id-input 
+                        :namePrefixBracket="$namePrefixBracket"
+                        :namePrefixDot="$namePrefixDot"
+                        :model="$productImage"
+                    />
                     <td> {{-- ait olduğu ürün --}}
                         <x-dropdown-input
                             :namePrefixBracket="$namePrefixBracket"
@@ -98,7 +95,6 @@
                 </tr>
             @endforeach
             <tr>
-                <td>Yeni</td>
                 <td> {{-- ait olduğu ürün --}}
                     <x-dropdown-input 
                         :column="'new_product_id'"

@@ -26,7 +26,7 @@ class ProductImagesController extends Controller
             return [$product->id => "{$product->id} - {$product->name}"];
         })->toArray();
 
-        $columns = ['ID', 'Ürün', 'Görsel', 'Sıra', 'Ürün Kart Görseli Mi?', 'Aktif Mi?'];
+        $columns = ['Ürün', 'Görsel', 'Sıra', 'Ürün Kart Görseli Mi?', 'Aktif Mi?'];
         return view('product-images-edit', [
             'productImages' => $productImages,
             'productsArray' => $productsArray,
@@ -109,7 +109,7 @@ class ProductImagesController extends Controller
     {
         $productImage = ProductImages::find($id);
         if ($productImage) {
-            
+
             if ($productImage->is_main == 1) {
                 return redirect()->route('product-images.edit')
                     ->with('info', 'Seçilen görsel zaten ana görsel olarak ayarlı.');
