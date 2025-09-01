@@ -41,7 +41,13 @@
                         />
                     </td>
                     <td> {{-- ait olduğu ürün --}}
-                        
+                        <x-dropdown-input
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :model="$productImage"
+                            :column="'product_id'"
+                            :options="$productsArray"
+                        />
                     </td>
                     <td> {{-- görsel --}}
                         <x-image-upload 
@@ -49,11 +55,11 @@
                             :namePrefixDot="$namePrefixDot"
                             :model="$productImage"
                             :column="'image_url'"
-                            :imageDir="'storage/images/products/'"
+                            :imageDir="'images/products/'"
                             :maxWidth="'100px'"
                         />
-                    </td>
-                    <td> {{-- görsel alternatif metin --}}
+
+                        <label for="{{ $namePrefixDot . 'image_alt' }}" style="margin-top: 10px;">Alternatif Metin</label>
                         <x-text-input
                             :namePrefixBracket="$namePrefixBracket"
                             :namePrefixDot="$namePrefixDot"
@@ -61,40 +67,52 @@
                             :model="$productImage"
                         />
                     </td>
-                    <td> {{-- aktif checkbox --}}
-                        <x-checkbox-input
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'status'"
+                    <td> {{-- status --}}
+                        <x-toggle-state
+                            :table="'product_images'"
                             :model="$productImage"
                         />
                     </td>
                     <td> {{-- sil --}}
-                        <x-remove-button :model="$productImage" />
+                        <x-remove-button
+                            :table="'product_images'" 
+                            :model="$productImage" 
+                        />
                     </td>
                 </tr>
             @endforeach
             <tr>
                 <td>Yeni</td>
                 <td> {{-- ait olduğu ürün --}}
-                    
+                    <x-dropdown-input 
+                        :column="'new_product_id'"
+                        :model="null"
+                        :options="$productsArray"
+                    />
                 </td>
                 <td> {{-- görsel --}}
                     <x-image-upload 
-                        :namePrefixBracket="$namePrefixBracket"
-                        :namePrefixDot="$namePrefixDot"
-                        :column="'image_url'"
+                        :column="'new_image_url'"
                         :model="null"
-                        :imageDir="'storage/images/products/'"
                         :maxWidth="'100px'"
                     />
+
+                    <label for="new_image_alt" style="margin-top: 10px;">Alternatif Metin</label>
+                    <x-text-input
+                        :column="'new_image_alt'"
+                        :model="null"
+                    />
                 </td>
-                <td> {{-- görsel alt metin --}}
+                <td> {{-- order --}}
+                    <x-integer-input
+                        :column="'new_sort_order'"
+                        :model="null"
+                    />
+                </td>
+                <td> {{-- is main --}}
 
                 </td>
-                <td> {{-- aktif checkbox --}}
-
-                </td>
+                <td><strong>Pasif</strong></td>
                 <td> {{-- ekle --}}
                     <x-add-button />
                 </td>

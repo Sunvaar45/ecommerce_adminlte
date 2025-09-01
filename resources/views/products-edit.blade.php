@@ -96,7 +96,6 @@
                             :namePrefixDot="$namePrefixDot"
                             :column="'stock'"
                             :model="$product"
-                            :required="true"
                         />
                     </td>
                     <td> {{-- renk --}}
@@ -179,7 +178,6 @@
                     <x-integer-input
                         :column="'new_stock'"
                         :model="null"
-                        :required="true"
                     />
                 </td>
                 <td> {{-- renk --}}

@@ -12,7 +12,6 @@
     class="form-control"
     min="0"
     step="1"
-    @if(isset($required) && $required) required @endif
     >
 
 @if (isset($namePrefixDot))
