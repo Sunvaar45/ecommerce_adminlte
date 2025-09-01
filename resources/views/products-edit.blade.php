@@ -32,12 +32,19 @@
                     $namePrefixDot = 'products.' . $i . '.';
                 @endphp
                 <tr>
-                    <td>
-                        <x-id-input 
+                    <x-id-input 
+                        :namePrefixBracket="$namePrefixBracket"
+                        :namePrefixDot="$namePrefixDot"
+                        :model="$product"
+                    />
+                    <td> {{-- ait olduğu kategori --}}
+                        <x-dropdown-input
                             :namePrefixBracket="$namePrefixBracket"
                             :namePrefixDot="$namePrefixDot"
+                            :column="'category_id'"
                             :model="$product"
-                        />
+                            :options="$categoriesArray"
+                        /> 
                     </td>
                     <td> {{-- isim --}}
                         <x-text-input 
@@ -111,15 +118,6 @@
                             :maxWidth="'100px'"
                         />
                     </td>
-                    <td> {{-- ait olduğu kategori --}}
-                        <x-dropdown-input
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'category_id'"
-                            :model="$product"
-                            :options="$categoriesArray"
-                        /> 
-                    </td>
                     <td> {{-- aktif durumu --}}
                         <x-toggle-state 
                             :table="'products'"
@@ -135,7 +133,14 @@
                 </tr>
             @endforeach
             <tr>
-                <td>Yeni</td>
+                {{-- <td>Yeni</td> --}}
+                <td> {{-- ait olduğu kategori --}}
+                    <x-dropdown-input
+                        :column="'new_category_id'"
+                        :model="null"
+                        :options="$categoriesArray"
+                    /> 
+                </td>
                 <td> {{-- ürün adı --}}
                     <x-text-input 
                         :column="'new_name'"
@@ -190,13 +195,6 @@
                         :model="null"
                         :maxWidth="'100px'"
                     />
-                </td>
-                <td> {{-- ait olduğu kategori --}}
-                    <x-dropdown-input
-                        :column="'new_category_id'"
-                        :model="null"
-                        :options="$categoriesArray"
-                    /> 
                 </td>
                 <td><strong>Pasif</strong></td>
                 <td> {{-- ekleme butonu --}}

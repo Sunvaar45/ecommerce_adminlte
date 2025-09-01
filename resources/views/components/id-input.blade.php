@@ -9,4 +9,4 @@
         value="{{ old('id', $model->id) }}"
     @endif
 >
-{{ $model->id }}
+{{-- {{ $model->id }} --}}

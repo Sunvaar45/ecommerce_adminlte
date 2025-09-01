@@ -22,7 +22,7 @@ class ProductsController extends Controller
             return [$category->id => "{$category->id} - {$category->name}"];
         })->toArray();
 
-        $columns = ['ID', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Görsel', 'Kategori', 'Aktif'];
+        $columns = ['Kategori', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Görsel', 'Aktif'];
         return view('products-edit', [
             'products' => $products,
             'categories' => $categories,

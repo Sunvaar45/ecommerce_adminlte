@@ -39,6 +39,7 @@
                             :namePrefixDot="$namePrefixDot"
                             :model="$category"
                         />
+                        {{ $category->id }}
                     </td>
                     <td>
                         <x-text-input 
