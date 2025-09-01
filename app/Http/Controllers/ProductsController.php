@@ -13,7 +13,9 @@ class ProductsController extends Controller
 
     public function edit()
     {
-        $products = Products::whereIn('status', [0, 1])->get();
+        $products = Products::whereIn('status', [0, 1])
+            ->orderBy('category_id', 'asc')
+            ->get();
         $categories = Categories::whereIn('status', [0, 1])->get();
         $categoriesArray = $categories->mapWithKeys(function($category) {
             if ($category->status == 0) {
