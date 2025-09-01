@@ -19,7 +19,6 @@ class Products extends Model
         'discount_price',
         'stock',
         'color',
-        'image_url',
         'category_id',
         'status',
     ];

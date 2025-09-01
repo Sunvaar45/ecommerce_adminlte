@@ -16,6 +16,7 @@ class ProductsController extends Controller
         $products = Products::whereIn('status', [0, 1])
             ->orderBy('category_id', 'asc')
             ->get();
+
         $categories = Categories::whereIn('status', [0, 1])->get();
         $categoriesArray = $categories->mapWithKeys(function($category) {
             if ($category->status == 0) {
@@ -24,7 +25,7 @@ class ProductsController extends Controller
             return [$category->id => "{$category->id} - {$category->name}"];
         })->toArray();
 
-        $columns = ['Kategori', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Görsel', 'Aktif'];
+        $columns = ['Kategori', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Aktif'];
         return view('products-edit', [
             'products' => $products,
             'categories' => $categories,
@@ -45,11 +46,10 @@ class ProductsController extends Controller
                 'new_discount_price' => ['nullable', 'numeric', 'min:0'],
                 'new_stock' => ['required', 'integer', 'min:0'],
                 'new_color' => ['required', 'string', 'max:255'],
-                'new_image_url' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'new_category_id' => ['required', 'integer', 'exists:categories,id'],
             ]);
 
-            $newProduct = Products::create([
+            Products::create([
                 'name' => $request->input('new_name'),
                 'description' => $request->input('new_description'),
                 'price' => $request->input('new_price'),
@@ -57,23 +57,10 @@ class ProductsController extends Controller
                 'discount_price' => $request->input('new_discount_price'),
                 'stock' => $request->input('new_stock'),
                 'color' => $request->input('new_color'),
-                'image_url' => null,
                 'category_id' => $request->input('new_category_id'),
                 'status' => 0,
             ]);
 
-            $imageDir = 'images/products/' . $newProduct->id;
-            $newImageName = $this->handleImageUpload(
-                $request,
-                'new_image_url',
-                $imageDir,
-                null
-            );
-            if ($newImageName) {
-                $newProduct->image_url = $newImageName;
-            }
-
-            $newProduct->save();
             return redirect()->route('products.edit')
                 ->with('success', 'Ürün başarıyla eklendi.');
         }
@@ -89,7 +76,6 @@ class ProductsController extends Controller
             'products.*.discount_price' => ['nullable', 'numeric', 'min:0'],
             'products.*.stock' => ['required', 'integer', 'min:0'],
             'products.*.color' => ['nullable', 'string', 'max:255'],
-            'products.*.image_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'products.*.category_id' => ['required', 'integer', 'exists:categories,id'],
         ]);
 
@@ -107,19 +93,6 @@ class ProductsController extends Controller
                     'color' => $productData['color'],
                     'category_id' => $productData['category_id'],
                 ]);
-
-                // update image
-                $imageDir = 'images/products/' . $product->id;
-                $newImageName = $this->handleImageUpload(
-                    $request,
-                    "products.$i.image_url",
-                    $imageDir,
-                    $product->image_url ?? null
-                );
-                if ($newImageName) {
-                    $productData['image_url'] = $newImageName;
-                    $product->update(['image_url' => $newImageName]);
-                }
             }
         }
         

@@ -13,7 +13,7 @@
     </div>
 @endif
 
-<form method="POST" action="{{ route('products.update') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('products.update') }}">
     @csrf
 
     <table class="table table-bordered">
@@ -107,16 +107,6 @@
                             :required="false"
                         />
                     </td>
-                    <td> {{-- görsel --}}
-                        <x-image-upload
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'image_url'"
-                            :model="$product"
-                            :imageDir="'images/products/' . $product->id"
-                            :maxWidth="'100px'"
-                        />
-                    </td>
                     <td> {{-- aktif durumu --}}
                         <x-toggle-state 
                             :table="'products'"
@@ -185,13 +175,6 @@
                         :column="'new_color'"
                         :model="null"
                         :required="false"
-                    />
-                </td>
-                <td> {{-- görsel --}}
-                    <x-image-upload
-                        :column="'new_image_url'"
-                        :model="null"
-                        :maxWidth="'100px'"
                     />
                 </td>
                 <td><strong>Pasif</strong></td>
