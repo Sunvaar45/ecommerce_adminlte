@@ -63,6 +63,10 @@
                             :model="$product"
                             :required="false"
                         />
+
+                        <a href="{{ route('products-description.edit', $product->id) }}" class="btn btn-info btn-sm mt-2">
+                            Düzenle
+                        </a>
                     </td>
                     <td> {{-- fiyat --}}
                         <x-price-input
