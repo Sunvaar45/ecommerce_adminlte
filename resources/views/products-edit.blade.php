@@ -56,14 +56,6 @@
                         />
                     </td>
                     <td> {{-- açıklama --}}
-                        <x-text-input 
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'description'"
-                            :model="$product"
-                            :required="false"
-                        />
-
                         <a href="{{ route('products-description.edit', $product->id) }}" class="btn btn-info btn-sm mt-2">
                             Düzenle
                         </a>
@@ -142,11 +134,7 @@
                     />
                 </td>
                 <td> {{-- açıklama --}}
-                    <x-text-input 
-                        :column="'new_description'"
-                        :model="null"
-                        :required="false"
-                    />
+                    Açıklama
                 </td>
                 <td> {{-- fiyat --}}
                     <x-price-input

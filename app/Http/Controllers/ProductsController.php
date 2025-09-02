@@ -40,7 +40,6 @@ class ProductsController extends Controller
         if ($request->has('add')) {
             $request->validate([
                 'new_name' => ['required', 'string', 'max:255'],
-                'new_description' => ['required', 'string'],
                 'new_price' => ['required', 'numeric', 'min:0'],
                 'new_has_discount' => ['boolean'],
                 'new_discount_price' => ['nullable', 'numeric', 'min:0'],
@@ -51,7 +50,7 @@ class ProductsController extends Controller
 
             Products::create([
                 'name' => $request->input('new_name'),
-                'description' => $request->input('new_description'),
+                'description' => 'Burayı Düzenle',
                 'price' => $request->input('new_price'),
                 'has_discount' => $request->input('new_has_discount'),
                 'discount_price' => $request->input('new_discount_price'),
@@ -70,7 +69,6 @@ class ProductsController extends Controller
             'products' => ['required', 'array'],
             'products.*.id' => ['required', 'integer', 'exists:products,id'],
             'products.*.name' => ['required', 'string', 'max:255'],
-            'products.*.description' => ['nullable', 'string'],
             'products.*.price' => ['required', 'numeric', 'min:0'],
             'products.*.has_discount' => ['boolean'],
             'products.*.discount_price' => ['nullable', 'numeric', 'min:0'],
@@ -85,7 +83,6 @@ class ProductsController extends Controller
                 // update attributes
                 $product->update([
                     'name' => $productData['name'],
-                    'description' => $productData['description'],
                     'price' => $productData['price'],
                     'has_discount' => $productData['has_discount'],
                     'discount_price' => $productData['discount_price'],
