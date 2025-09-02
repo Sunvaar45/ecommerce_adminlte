@@ -1,4 +1,4 @@
-@props(['submitLabel' => 'Güncelle', 'cancelLabel' => 'İptal'])
+@props(['submitLabel' => 'Güncelle', 'cancelLabel' => 'İptal', 'route' => 'home'])
 
 <button type="submit" class="btn btn-primary">{{ $submitLabel }}</button>
-<a href="/" class="btn btn-secondary">{{ $cancelLabel }}</a>
+<a href="{{ route($route) }}" class="btn btn-secondary">{{ $cancelLabel }}</a>

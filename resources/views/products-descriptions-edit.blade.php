@@ -16,7 +16,9 @@
         <textarea id="content-editor" name="description">{{ $product->description }}</textarea>
     </div>
 
-    <x-update-buttons />
+    <x-update-buttons
+        route="products.edit"
+    />
 </form>
 
 @stop

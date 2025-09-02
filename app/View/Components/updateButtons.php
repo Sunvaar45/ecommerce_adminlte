@@ -10,14 +10,16 @@ class updateButtons extends Component
 {
     public string $submitLabel;
     public string $cancelLabel;
+    public string $route;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $submitLabel = 'Güncelle', string $cancelLabel = 'İptal')
+    public function __construct(string $submitLabel = 'Güncelle', string $cancelLabel = 'İptal', string $route = 'home')
     {
         $this->submitLabel = $submitLabel;
         $this->cancelLabel = $cancelLabel;
+        $this->route = $route;
     }
 
     /**
