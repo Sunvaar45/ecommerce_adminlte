@@ -26,7 +26,7 @@ class ProductImagesController extends Controller
             return [$product->id => "{$product->id} - {$product->name}"];
         })->toArray();
 
-        $columns = ['Ürün', 'Görsel', 'Sıra', 'Ürün Kart Görseli Mi?', 'Aktif Mi?'];
+        $columns = ['Ürün', 'Görsel', 'Sıra', 'Ana Görsel Mi?', 'Aktif Mi?'];
         return view('product-images-edit', [
             'productImages' => $productImages,
             'productsArray' => $productsArray,
