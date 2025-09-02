@@ -18,6 +18,15 @@ class ProductDescriptionController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'description' => ['nullable', 'string', 'max:5000'],
+        ]);
 
+        $product = Products::findOrFail($id);
+        $product->description = $request->input('description');
+        $product->save();
+
+        return redirect()->route('products.edit')
+            ->with('success', 'Ürün açıklaması güncellendi.');
     }
 }

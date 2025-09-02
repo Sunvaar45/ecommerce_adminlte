@@ -13,7 +13,7 @@
 <form method="POST" action="{{ route('products-description.update', $product->id) }}">
     @csrf
     <div>
-        <textarea id="content-editor" name="content">{{ $product->description }}</textarea>
+        <textarea id="content-editor" name="description">{{ $product->description }}</textarea>
     </div>
 
     <x-update-buttons />
