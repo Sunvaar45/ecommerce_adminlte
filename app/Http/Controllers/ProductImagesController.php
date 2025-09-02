@@ -11,12 +11,9 @@ class ProductImagesController extends Controller
 {
     use handleFileUpload;
 
-    public function edit()
+    public function edit(Request $request)
     {
-        $productImages = ProductImages::whereIn('status', [0, 1])
-            ->orderBy('product_id', 'asc')
-            ->orderBy('sort_order', 'asc')
-            ->get();
+        $columns = ['Ürün', 'Görsel', 'Sıra', 'Ana Görsel Mi?', 'Aktif Mi?'];
 
         $products = Products::whereIn('status', [0, 1])->get();
         $productsArray = $products->mapWithKeys(function ($product) {
@@ -26,11 +23,22 @@ class ProductImagesController extends Controller
             return [$product->id => "{$product->id} - {$product->name}"];
         })->toArray();
 
-        $columns = ['Ürün', 'Görsel', 'Sıra', 'Ana Görsel Mi?', 'Aktif Mi?'];
+        $query = ProductImages::whereIn('status', [0, 1])
+            ->orderBy('product_id', 'asc')
+            ->orderBy('sort_order', 'asc');
+
+        $filteredProductId = $request->query('product_id');
+        if ($filteredProductId) {
+            $query->where('product_id', $filteredProductId);
+        }
+
+        $productImages = $query->get();
+
         return view('product-images-edit', [
-            'productImages' => $productImages,
-            'productsArray' => $productsArray,
             'columns' => $columns,
+            'productsArray' => $productsArray,
+            'productImages' => $productImages,
+            'filteredProductId' => $filteredProductId
         ]);
     }
 
@@ -101,7 +109,7 @@ class ProductImagesController extends Controller
             }
         }
 
-        return redirect()->route('product-images.edit')
+        return redirect()->back()
             ->with('success', 'Ürün Görselleri Güncellendi.');
     }
 
@@ -123,11 +131,11 @@ class ProductImagesController extends Controller
             $productImage->is_main = 1;
             $productImage->save();
 
-            return redirect()->route('product-images.edit')
+            return redirect()->back()
                 ->with('success', 'Ana görsel başarıyla değiştirildi.');
         }
 
-        return redirect()->route('product-images.edit')
+        return redirect()->back()
             ->with('error', 'Görsel bulunamadı.');
     }
 }

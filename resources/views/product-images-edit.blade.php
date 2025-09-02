@@ -11,6 +11,27 @@
 <x-success-alert />
 <x-info-alert />
 
+<form method="GET" action="{{ route('product-images.edit') }}" class="mb-3">
+    <div class="form-inline">
+        <label for="product_id" class="mr-2">Ürüne Göre Filtrele:</label>
+        <select name="product_id" id="product_id" class="form-control mr-2" onchange="this.form.submit()">
+            <option value="">-- Hepsi --</option>
+            @foreach($productsArray as $productId => $productLabel)
+                <option value="{{ $productId }}"
+                    @if (isset($filteredProductId) && $filteredProductId == $productId)
+                        selected
+                    @endif
+                >
+                    {{ $productLabel }}
+                </option>
+            @endforeach
+        </select>
+        @if(request('product_id'))
+            <a href="{{ route('product-images.edit') }}" class="btn btn-sm btn-outline-secondary">Sıfırla</a>
+        @endif
+    </div>
+</form>
+
 <form method="POST" action="{{ route('product-images.update') }}" enctype="multipart/form-data">
     @csrf
 
