@@ -50,7 +50,7 @@ class ProductsController extends Controller
 
             Products::create([
                 'name' => $request->input('new_name'),
-                'description' => 'Burayı Düzenle',
+                'description' => config('defaults.description'),
                 'price' => $request->input('new_price'),
                 'has_discount' => $request->input('new_has_discount'),
                 'discount_price' => $request->input('new_discount_price'),
