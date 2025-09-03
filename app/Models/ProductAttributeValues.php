@@ -18,4 +18,13 @@ class ProductAttributeValues extends Model
         'sort_order',
         'status',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
+    public function attribute()
+    {
+        return $this->belongsTo(Attributes::class, 'attribute_id');
+    }
 }

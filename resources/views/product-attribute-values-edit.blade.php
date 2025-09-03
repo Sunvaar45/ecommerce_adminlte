@@ -27,6 +27,7 @@
                 @php
                     $namePrefixBracket = 'values[' . $i . ']';
                     $namePrefixDot = 'values.' . $i . '.';
+                    $attributeType = $value->attribute->type;
                 @endphp
                 <tr>
                     <x-id-input 
@@ -53,7 +54,22 @@
                         />
                     </td>
                     <td> {{-- value --}}
-                        
+                        @if ($attributeType == 'text')
+                            <x-text-input 
+                                :namePrefixBracket="$namePrefixBracket"
+                                :namePrefixDot="$namePrefixDot"
+                                :column="'value'"
+                                :model="$value"
+                            />
+                        @elseif ($attributeType == 'boolean')
+                            <x-dropdown-input 
+                                :namePrefixBracket="$namePrefixBracket"
+                                :namePrefixDot="$namePrefixDot"
+                                :column="'value'"
+                                :model="$value"
+                                :options="['Evet' => 'Evet', 'Hayır' => 'Hayır']"
+                            />
+                        @endif
                     </td>
                     <td> {{-- order --}}
                         <x-integer-input 
@@ -93,7 +109,7 @@
                     />
                 </td>
                 <td> {{-- value --}}
-
+                    Burası özellik türüne göre doldurulacak
                 </td>
                 <td> {{-- order --}}
                     <x-integer-input
