@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminActionsController;
+use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductDescriptionController;
@@ -35,4 +36,9 @@ Route::prefix('/admin/product-images')->group(function () {
     Route::get('/', [ProductImagesController::class, 'edit'])->name('product-images.edit');
     Route::post('/update', [ProductImagesController::class, 'update'])->name('product-images.update');
     Route::get('/set-main/{id}', [ProductImagesController::class, 'setMainImage'])->name('product-images.set-main');
+});
+
+Route::prefix('admin/attributes')->group(function () {
+    Route::get('/', [AttributesController::class, 'edit'])->name('attributes.edit');
+    Route::post('/update', [AttributesController::class, 'update'])->name('attributes.update');
 });

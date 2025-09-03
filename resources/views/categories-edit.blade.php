@@ -8,11 +8,7 @@
 
 @section('content')
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+<x-success-alert />
 
 <form method="POST" action="{{ route('categories.update') }}">
     @csrf
