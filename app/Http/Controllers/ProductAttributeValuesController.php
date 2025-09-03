@@ -13,9 +13,9 @@ class ProductAttributeValuesController extends Controller
     {
         $columns = ['Ürün ID', 'Özellik ID', 'Değer', 'Sıra', 'Aktif Mi?'];
         $values = ProductAttributeValues::whereIn('status', [0, 1])
+            ->with('attribute')
             ->orderBy('product_id')
             ->orderBy('sort_order')
-            ->with('attribute')
             ->get();
 
         // get product_id dropdown array
@@ -79,5 +79,37 @@ class ProductAttributeValuesController extends Controller
         }
 
         // update
+        $request->validate([
+            'values' => ['required', 'array'],
+            'values.*.product_id' => ['required', 'exists:products,id'],
+            'values.*.attribute_id' => ['required', 'exists:attributes,id'],
+            'values.*.value' => ['required', 'string'],
+            'values.*.sort_order' => ['required', 'integer', 'min:0'],
+        ]);
+
+        try {
+            foreach ($request->values as $valueData) {
+                $value = ProductAttributeValues::find($valueData['id']);
+                if ($value) {
+                    $value->update([
+                        'product_id' => $valueData['product_id'],
+                        'attribute_id' => $valueData['attribute_id'],
+                        'value' => $valueData['value'],
+                        'sort_order' => $valueData['sort_order'],
+                    ]);
+                }
+            }
+        } catch (\Exception $e) {
+            if ($e->getCode() == 23000) { // Integrity constraint violation
+                return redirect()->back()
+                    ->with('error', 'Bu ürün için bu özellik zaten mevcut. Lütfen başka bir özellik seçin.');
+            }
+
+            return redirect()->back()
+                ->with('error', 'Ürün özellik değerleri güncellenirken bir hata oluştu: ' . $e->getMessage());
+        }
+
+        return redirect()->back()
+            ->with('success', 'Ürün özellik değerleri başarıyla güncellendi.');
     }
 }
