@@ -331,7 +331,6 @@ return [
             'route' => 'product-images.edit',
             'icon' => 'fas fa-fw fa-images',
         ],
-
         [
             'text' => 'blog',
             'url' => 'admin/blog',
