@@ -9,6 +9,8 @@
 @section('content')
 
 <x-success-alert />
+<x-info-alert />
+<x-error-alert />
 
 <form method="POST" action="{{ route('product-attribute-values.update') }}">
     @csrf

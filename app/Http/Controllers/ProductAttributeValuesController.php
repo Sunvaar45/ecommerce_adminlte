@@ -42,7 +42,6 @@ class ProductAttributeValuesController extends Controller
 
             'productsArray' => $productsArray,
             'attributesArray' => $attributesArray,
-            // 'attributeTypes' => $attributeTypes,
         ]);
     }
 
@@ -51,8 +50,32 @@ class ProductAttributeValuesController extends Controller
         // add
         if ($request->has('add')) {
             $request->validate([
-
+                'new_product_id' => ['required', 'exists:products,id'],
+                'new_attribute_id' => ['required', 'exists:attributes,id'],
+                'new_sort_order' => ['required', 'integer', 'min:0'],
             ]);
+
+            try {
+                ProductAttributeValues::create([
+                    'product_id' => $request->input('new_product_id'),
+                    'attribute_id' => $request->input('new_attribute_id'),
+                    'value' => 'Burayı Düzenle',
+                    'sort_order' => $request->input('new_sort_order'),
+                    'status' => 0,
+                ]);
+            } catch (\Exception $e) {
+                if ($e->getCode() == 23000) { // Integrity constraint violation
+                    return redirect()->back()
+                        ->with('error', 'Bu ürün için bu özellik zaten mevcut. Lütfen başka bir özellik seçin.');
+                }
+
+                return redirect()->back()
+                    ->with('error', 'Ürün özellik değeri eklenirken bir hata oluştu: ' . $e->getMessage());
+            }
+
+            return redirect()->back()
+                ->with('success', 'Yeni ürün özellik değeri eklendi.')
+                ->with('info', 'Lütfen değeri düzenleyin.');
         }
 
         // update
