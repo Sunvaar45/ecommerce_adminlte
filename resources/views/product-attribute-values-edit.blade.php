@@ -10,7 +10,7 @@
 
 <x-success-alert />
 
-<form method="POST" action="{{ route('attributes.update') }}">
+<form method="POST" action="{{ route('product-attribute-values.update') }}">
     @csrf
 
     <table class="table table-bordered">

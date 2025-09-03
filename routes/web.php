@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminActionsController;
 use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductAttributeValuesController;
 use App\Http\Controllers\ProductDescriptionController;
 use App\Http\Controllers\ProductImagesController;
 use App\Http\Controllers\ProductsController;
@@ -41,4 +42,9 @@ Route::prefix('/admin/product-images')->group(function () {
 Route::prefix('admin/attributes')->group(function () {
     Route::get('/', [AttributesController::class, 'edit'])->name('attributes.edit');
     Route::post('/update', [AttributesController::class, 'update'])->name('attributes.update');
+});
+
+Route::prefix('/admin/product-attribute-values')->group(function () {
+    Route::get('/', [ProductAttributeValuesController::class, 'edit'])->name('product-attribute-values.edit');
+    Route::post('/update', [ProductAttributeValuesController::class, 'update'])->name('product-attribute-values.update');
 });

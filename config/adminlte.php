@@ -336,6 +336,11 @@ return [
             'route' => 'attributes.edit',
             'icon' => 'fas fa-fw fa-cogs',
         ],
+        [
+            'text' => 'Ürün Özellikleri',
+            'route' => 'product-attribute-values.edit',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
         ['header' => 'HESAP AYARLARI'],
         [
             'text' => 'Profil Bilgileri',
