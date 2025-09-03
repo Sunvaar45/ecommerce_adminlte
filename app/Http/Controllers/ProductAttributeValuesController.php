@@ -41,6 +41,13 @@ class ProductAttributeValuesController extends Controller
 
     public function update(Request $request)
     {
+        // add
+        if ($request->has('add')) {
+            $request->validate([
 
+            ]);
+        }
+
+        // update
     }
 }
