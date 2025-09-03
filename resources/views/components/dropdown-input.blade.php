@@ -3,8 +3,10 @@
 <select
     @if (isset($namePrefixBracket) && isset($namePrefixDot))
         name="{{ $namePrefixBracket . '[' . $column . ']' }}"
+        id="{{ $namePrefixDot . $column }}"
     @else
         name="{{ $column }}"
+        id="{{ $column }}"
     @endif
     class="form-control"
 >
