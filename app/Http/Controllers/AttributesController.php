@@ -11,10 +11,15 @@ class AttributesController extends Controller
     {
         $columns = ['ID', 'İsim', 'Veri Tipi', 'Aktif Mi?'];
         $attributes = Attributes::whereIn('status', [0, 1])->get();
+        $typeOptionsArray = [
+            'text' => 'Metin',
+            'boolean' => 'Doğru/Yanlış',
+        ];
 
         return view('attributes-edit', [
             'attributes' => $attributes,
             'columns' => $columns,
+            'typeOptionsArray' => $typeOptionsArray,
         ]);
     }
 

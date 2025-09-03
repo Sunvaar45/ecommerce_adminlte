@@ -332,9 +332,9 @@ return [
             'icon' => 'fas fa-fw fa-images',
         ],
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
+            'text' => 'Özellikler',
+            'route' => 'attributes.edit',
+            'icon' => 'fas fa-fw fa-cogs',
         ],
         ['header' => 'HESAP AYARLARI'],
         [

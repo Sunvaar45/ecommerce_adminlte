@@ -23,39 +23,48 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $i => $category)
+            @foreach ($attributes as $i => $attribute)
                 @php
-                    $namePrefixBracket = 'categories[' . $i . ']';
-                    $namePrefixDot = 'categories.' . $i . '.';
+                    $namePrefixBracket = 'attributes[' . $i . ']';
+                    $namePrefixDot = 'attributes.' . $i . '.';
                 @endphp
                 <tr>
                     <td>
                         <x-id-input 
                             :namePrefixBracket="$namePrefixBracket"
                             :namePrefixDot="$namePrefixDot"
-                            :model="$category"
+                            :model="$attribute"
                         />
-                        {{ $category->id }}
+                        {{ $attribute->id }}
                     </td>
-                    <td>
+                    <td> {{-- name --}}
                         <x-text-input 
                             :namePrefixBracket="$namePrefixBracket"
                             :namePrefixDot="$namePrefixDot"
                             :column="'name'"
-                            :model="$category"
-                            :required="true"
+                            :model="$attribute"
+                            :required="false"
+                        />
+                    </td>
+                    <td> {{-- type --}}
+                        <x-dropdown-input 
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'type'"
+                            :model="$attribute"
+                            :options="$typeOptionsArray"
                         />
                     </td>
                     <td>
                         <x-toggle-state 
-                            :table="'categories'"
-                            :model="$category"
+                            :table="'attributes'"
+                            :model="$attribute"
                         />
                     </td>
                     <td>
                         <x-remove-button 
-                            :table="'categories'"
-                            :model="$category"
+                            :table="'attributes'"
+                            :model="$attribute"
                         />                   
                     </td>
                 </tr>
@@ -67,6 +76,13 @@
                         :column="'new_name'"
                         :model="null"
                         :required="false"
+                    />
+                </td>
+                <td>
+                    <x-dropdown-input 
+                        :column="'new_type'"
+                        :model="null"
+                        :options="$typeOptionsArray"
                     />
                 </td>
                 <td><strong>Pasif</strong></td>
