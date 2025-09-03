@@ -339,7 +339,7 @@ return [
         ['header' => 'HESAP AYARLARI'],
         [
             'text' => 'Profil Bilgileri',
-            'url' => 'admin/settings',
+            'url' => '#',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

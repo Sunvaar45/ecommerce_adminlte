@@ -13,7 +13,7 @@
 <form method="POST" action="{{ route('attributes.update') }}">
     @csrf
 
-    <table class="table table-bordered" id="categories-table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 @foreach ($columns as $column)

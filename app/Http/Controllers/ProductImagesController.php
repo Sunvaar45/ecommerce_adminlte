@@ -74,7 +74,7 @@ class ProductImagesController extends Controller
             }
 
             $newEntry->save();
-            return redirect()->route('product-images.edit')
+            return redirect()->back()
                 ->with('success', 'Yeni Ürün Görseli Eklendi.');
         }
 
@@ -82,6 +82,7 @@ class ProductImagesController extends Controller
         $request->validate([
             'productImages' => ['required', 'array'],
             'productImages.*.id' => ['required', 'integer', 'exists:product_images,id'],
+            'productImages.*.product_id' => ['required', 'integer', 'exists:products,id'],
             'productImages.*.image_url' => ['nullable', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'productImages.*.image_alt' => ['nullable', 'string', 'max:255'],
             'productImages.*.sort_order' => ['required', 'integer', 'min:0'],
@@ -91,6 +92,7 @@ class ProductImagesController extends Controller
             $productImage = ProductImages::find($productImageData['id']);
             if ($productImage) {
                 $productImage->update([
+                    'product_id' => $productImageData['product_id'],
                     'image_alt' => $productImageData['image_alt'],
                     'sort_order' => $productImageData['sort_order'],
                 ]);
