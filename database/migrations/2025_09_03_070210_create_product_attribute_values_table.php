@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('attribute_id')->constrained('attributes')->onDelete('cascade');
             $table->text('value');
             $table->integer('sort_order')->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)
+                ->comment('0: Inactive, 1: Active, 2: Deleted');
             $table->timestamps();
 
             $table->unique(['product_id', 'attribute_id']);

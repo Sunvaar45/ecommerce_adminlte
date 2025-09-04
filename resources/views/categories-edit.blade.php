@@ -29,15 +29,12 @@
                     $namePrefixDot = 'categories.' . $i . '.';
                 @endphp
                 <tr>
-                    <td>
-                        <x-id-input 
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :model="$category"
-                        />
-                        {{ $category->id }}
-                    </td>
-                    <td>
+                    <x-id-input 
+                        :namePrefixBracket="$namePrefixBracket"
+                        :namePrefixDot="$namePrefixDot"
+                        :model="$category"
+                    />
+                    <td> {{-- name --}}
                         <x-text-input 
                             :namePrefixBracket="$namePrefixBracket"
                             :namePrefixDot="$namePrefixDot"
@@ -46,7 +43,15 @@
                             :required="true"
                         />
                     </td>
-                    <td>
+                    <td> {{-- sort_order --}}
+                        <x-integer-input 
+                            :namePrefixBracket="$namePrefixBracket"
+                            :namePrefixDot="$namePrefixDot"
+                            :column="'sort_order'"
+                            :model="$category"
+                        />
+                    </td>
+                    <td> {{-- status --}}
                         <x-toggle-state 
                             :table="'categories'"
                             :model="$category"
@@ -61,12 +66,17 @@
                 </tr>
             @endforeach
             <tr>
-                <td>Yeni</td>
                 <td>
                     <x-text-input 
                         :column="'new_name'"
                         :model="null"
                         :required="false"
+                    />
+                </td>
+                <td> {{-- sort_order --}}
+                    <x-integer-input 
+                        :column="'new_sort_order'"
+                        :model="null"
                     />
                 </td>
                 <td><strong>Pasif</strong></td>

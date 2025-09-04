@@ -10,8 +10,10 @@ class CategoriesController extends Controller
 {
     public function edit()
     {
-        $categories = Categories::whereIn('status', [0, 1])->get();
-        $columns = ['ID', 'İsim', 'Aktif'];
+        $categories = Categories::whereIn('status', [0, 1])
+            ->orderBy('sort_order', 'asc')
+            ->get();
+        $columns = ['İsim', 'Sıra', 'Aktif'];
         return view('categories-edit', [
             'categories' => $categories,
             'columns' => $columns,
@@ -24,9 +26,11 @@ class CategoriesController extends Controller
         if ($request->has('add')) {
             $request->validate([
                 'new_name' => ['required', 'string', 'max:255'],
+                'new_sort_order' => ['nullable', 'integer', 'min:0'],
             ]);
             Categories::create([
                 'name' => $request->input('new_name'),
+                'sort_order' => $request->input('new_sort_order', 0),
                 'status' => 0,
             ]);
             return redirect()->route('categories.edit')
@@ -38,6 +42,7 @@ class CategoriesController extends Controller
             'categories' => ['required', 'array'],
             'categories.*.id' => ['required', 'integer', 'exists:categories,id'],
             'categories.*.name' => ['required', 'string', 'max:255'],
+            'categories.*.sort_order' => ['nullable', 'integer', 'min:0'],
         ]);
 
         foreach ($request->categories as $categoryData) {
@@ -45,6 +50,7 @@ class CategoriesController extends Controller
             if ($category) {
                 $category->update([
                     'name' => $categoryData['name'],
+                    'sort_order' => $categoryData['sort_order'],
                 ]);
             }
         }

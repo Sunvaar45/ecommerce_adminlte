@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('image_alt')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_main')->default(false)
-                ->comment('Görsel ürün kartında gözüken resim');
-            $table->tinyInteger('status')->default(0);
+                ->comment('Image shown on product card and big image on details page');
+            $table->tinyInteger('status')->default(0)
+                ->comment('0: Inactive, 1: Active, 2: Deleted');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

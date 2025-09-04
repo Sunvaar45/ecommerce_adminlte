@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type', ['text', 'boolean'])->default('text');
             $table->tinyInteger('status')->default(0)
-                ->comment('0: Pasif, 1: Aktif, 2: Silinmiş');
+                ->comment('0: Inactive, 1: Active, 2: Deleted');
             $table->timestamps();
         });
     }

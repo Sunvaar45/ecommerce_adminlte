@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->string('image_url')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)
+                ->comment('0: Inactive, 1: Active, 2: Deleted');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
