@@ -315,6 +315,46 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+
+        ['header' => 'SİTE İÇERİK YÖNETİMİ'],
+        [
+            'text' => 'Site Geneli',
+            'icon' => 'fas fa-fw fa-home',
+            'submenu' => [
+                [
+                    'text' => 'Favicon ve Başlık',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-flag',
+                ],
+                [
+                    'text' => 'Renkler',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-paint-brush',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Navigasyon Barı',
+            'url' => '#',
+            'icon' => 'fas fa-fw fa-bars',
+        ],
+        [
+            'text' => 'En Alt Kısım',
+            'icon' => 'fas fa-fw fa-flag',
+            'submenu' => [
+                [
+                    'text' => 'Telif Hakkı Metni',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-copyright',
+                ],
+                [
+                    'text' => 'Sosyal Medya İkonları',
+                    'url' => '#',
+                    'icon' => 'fas fa-fw fa-thumbs-up',
+                ],
+            ],
+        ],
+
         ['header' => 'ÜRÜN YÖNETİMİ'],
         [
             'text' => 'Kategoriler',
