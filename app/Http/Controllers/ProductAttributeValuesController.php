@@ -9,14 +9,9 @@ use Illuminate\Http\Request;
 
 class ProductAttributeValuesController extends Controller
 {
-    public function edit()
+    public function edit(Request $request)
     {
         $columns = ['Ürün ID', 'Özellik ID', 'Değer', 'Sıra', 'Aktif Mi?'];
-        $values = ProductAttributeValues::whereIn('status', [0, 1])
-            ->with('attribute')
-            ->orderBy('product_id')
-            ->orderBy('sort_order')
-            ->get();
 
         // get product_id dropdown array
         $products = Products::whereIn('status', [0, 1])->get();
@@ -36,9 +31,22 @@ class ProductAttributeValuesController extends Controller
             return [$attribute->id => "{$attribute->id} - {$attribute->name}"];
         })->toArray();
 
+        $query = ProductAttributeValues::whereIn('status', [0, 1])
+            ->with('attribute')
+            ->orderBy('product_id')
+            ->orderBy('sort_order');
+            
+        $filteredProductId = $request->query('product_id');
+        if ($filteredProductId) {
+            $query->where('product_id', $filteredProductId);
+        }
+
+        $values = $query->get();
+
         return view('product-attribute-values-edit', [
             'columns' => $columns,
             'values' => $values,
+            'filteredProductId' => $filteredProductId,
 
             'productsArray' => $productsArray,
             'attributesArray' => $attributesArray,
