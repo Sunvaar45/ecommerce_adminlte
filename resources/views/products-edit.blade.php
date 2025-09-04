@@ -94,15 +94,6 @@
                             :model="$product"
                         />
                     </td>
-                    <td> {{-- renk --}}
-                        <x-text-input
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'color'"
-                            :model="$product"
-                            :required="false"
-                        />
-                    </td>
                     <td> {{-- aktif durumu --}}
                         <x-toggle-state 
                             :table="'products'"
@@ -160,13 +151,6 @@
                     <x-integer-input
                         :column="'new_stock'"
                         :model="null"
-                    />
-                </td>
-                <td> {{-- renk --}}
-                    <x-text-input
-                        :column="'new_color'"
-                        :model="null"
-                        :required="false"
                     />
                 </td>
                 <td><strong>Pasif</strong></td>

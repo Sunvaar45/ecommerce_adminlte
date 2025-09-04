@@ -25,7 +25,7 @@ class ProductsController extends Controller
             return [$category->id => "{$category->id} - {$category->name}"];
         })->toArray();
 
-        $columns = ['Kategori', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Renk', 'Aktif'];
+        $columns = ['Kategori', 'İsim', 'Açıklama', 'Fiyat', 'İndirim Aktif', 'İndirimli Fiyat', 'Stok Miktarı', 'Aktif'];
         return view('products-edit', [
             'products' => $products,
             'categories' => $categories,
@@ -44,7 +44,6 @@ class ProductsController extends Controller
                 'new_has_discount' => ['boolean'],
                 'new_discount_price' => ['nullable', 'numeric', 'min:0'],
                 'new_stock' => ['required', 'integer', 'min:0'],
-                'new_color' => ['required', 'string', 'max:255'],
                 'new_category_id' => ['required', 'integer', 'exists:categories,id'],
             ]);
 
@@ -55,7 +54,6 @@ class ProductsController extends Controller
                 'has_discount' => $request->input('new_has_discount'),
                 'discount_price' => $request->input('new_discount_price'),
                 'stock' => $request->input('new_stock'),
-                'color' => $request->input('new_color'),
                 'category_id' => $request->input('new_category_id'),
                 'status' => 0,
             ]);
@@ -73,7 +71,6 @@ class ProductsController extends Controller
             'products.*.has_discount' => ['boolean'],
             'products.*.discount_price' => ['nullable', 'numeric', 'min:0'],
             'products.*.stock' => ['required', 'integer', 'min:0'],
-            'products.*.color' => ['nullable', 'string', 'max:255'],
             'products.*.category_id' => ['required', 'integer', 'exists:categories,id'],
         ]);
 
@@ -87,7 +84,6 @@ class ProductsController extends Controller
                     'has_discount' => $productData['has_discount'],
                     'discount_price' => $productData['discount_price'],
                     'stock' => $productData['stock'],
-                    'color' => $productData['color'],
                     'category_id' => $productData['category_id'],
                 ]);
             }

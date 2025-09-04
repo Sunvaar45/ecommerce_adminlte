@@ -18,7 +18,6 @@ class Products extends Model
         'has_discount',
         'discount_price',
         'stock',
-        'color',
         'category_id',
         'status',
     ];
