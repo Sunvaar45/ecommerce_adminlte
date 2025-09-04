@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminActionsController;
 use App\Http\Controllers\AttributesController;
+use App\Http\Controllers\FaviconAndTitleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductAttributeValuesController;
@@ -18,6 +19,11 @@ Route::get('/admin/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin-actions')->group(function () {
     Route::get('/set-active-state/{table}/{id}', [AdminActionsController::class, 'setActiveState'])->name('set-active-state');
     Route::get('/delete/{table}/{id}', [AdminActionsController::class, 'delete'])->name('delete');
+});
+
+Route::prefix('/admin/favicon-and-title')->group(function () {
+    Route::get('/', [FaviconAndTitleController::class, 'edit'])->name('favicon-and-title.edit');
+    Route::post('/update', [FaviconAndTitleController::class, 'update'])->name('favicon-and-title.update');
 });
 
 Route::prefix('/admin/categories')->group(function () {

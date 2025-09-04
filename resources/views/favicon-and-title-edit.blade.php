@@ -3,47 +3,36 @@
 @section('title', 'Site İçeriğini Düzenle')
 
 @section('content_header')
-    <h1>Site İçeriğini Düzenle</h1>
+    <h1>Favicon ve Başlık</h1>
 @stop
 
 @section('content')
 
 <x-success-alert />
 
-<form method="POST" action="{{ route('categories.update') }}">
+<form method="POST" action="{{ route('favicon-and-title.update') }}">
     @csrf
 
-    <table class="table table-bordered" id="categories-table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 @foreach ($columns as $column)
                     <th>{{ $column }}</th>
                 @endforeach
-                <th>Sil / Ekle</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $i => $category)
-                @php
-                    $namePrefixBracket = 'categories[' . $i . ']';
-                    $namePrefixDot = 'categories.' . $i . '.';
-                @endphp
+            @if ($faviconAndTitle)
                 <tr>
+                    <x-id-input 
+                        :model="$faviconAndTitle"
+                    />
                     <td>
-                        <x-id-input 
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :model="$category"
-                        />
-                        {{ $category->id }}
-                    </td>
-                    <td>
-                        <x-text-input 
-                            :namePrefixBracket="$namePrefixBracket"
-                            :namePrefixDot="$namePrefixDot"
-                            :column="'name'"
-                            :model="$category"
-                            :required="true"
+                        <x-image-upload 
+                            :model="$faviconAndTitle"
+                            :column="'favicon'"
+                            :maxWidth="'100px'"
+                            :imageDir="'images/favicon/'"
                         />
                     </td>
                     <td>
@@ -59,21 +48,7 @@
                         />                   
                     </td>
                 </tr>
-            @endforeach
-            <tr>
-                <td>Yeni</td>
-                <td>
-                    <x-text-input 
-                        :column="'new_name'"
-                        :model="null"
-                        :required="false"
-                    />
-                </td>
-                <td><strong>Pasif</strong></td>
-                <td>
-                    <x-add-button />
-                </td>
-            </tr>
+            @endif
         </tbody>
 
     </table>

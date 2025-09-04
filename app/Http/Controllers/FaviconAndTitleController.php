@@ -9,9 +9,11 @@ class FaviconAndTitleController extends Controller
 {
     public function edit()
     {
+        $columns = ['Site İkonu', 'Sİte İsmi'];
         $faviconAndTitle = FaviconAndTitle::first();
 
         return view('favicon-and-title-edit', [
+            'columns' => $columns,
             'faviconAndTitle' => $faviconAndTitle,
         ]);
     }
