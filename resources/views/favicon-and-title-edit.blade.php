@@ -27,7 +27,7 @@
                     <x-id-input 
                         :model="$faviconAndTitle"
                     />
-                    <td>
+                    <td> {{-- favicon --}}
                         <x-image-upload 
                             :model="$faviconAndTitle"
                             :column="'favicon'"
@@ -35,22 +35,15 @@
                             :imageDir="'images/favicon/'"
                         />
                     </td>
-                    <td>
-                        <x-toggle-state 
-                            :table="'categories'"
-                            :model="$category"
+                    <td> {{-- title --}}
+                        <x-text-input 
+                            :column="'title'"
+                            :model="$faviconAndTitle"
                         />
-                    </td>
-                    <td>
-                        <x-remove-button 
-                            :table="'categories'"
-                            :model="$category"
-                        />                   
                     </td>
                 </tr>
             @endif
         </tbody>
-
     </table>
 
     <x-update-buttons />

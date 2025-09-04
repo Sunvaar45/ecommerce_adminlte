@@ -323,7 +323,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Favicon ve Başlık',
-                    'url' => '#',
+                    'route' => 'favicon-and-title.edit',
                     'icon' => 'fas fa-fw fa-flag',
                 ],
                 [
