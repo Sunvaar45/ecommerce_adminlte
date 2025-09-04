@@ -10,7 +10,7 @@
 
 <x-success-alert />
 
-<form method="POST" action="{{ route('favicon-and-title.update') }}">
+<form method="POST" action="{{ route('favicon-and-title.update') }}" enctype="multipart/form-data">
     @csrf
 
     <table class="table table-bordered">

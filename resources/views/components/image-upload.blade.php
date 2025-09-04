@@ -10,7 +10,7 @@
     @php
         $disk = env('MAIN_STORAGE_DISK', 'public');
         $storage = Storage::disk($disk);
-        $url = $storage->url($imageDir . '/' . $model->image_url);
+        $url = $storage->url($imageDir . '/' . $model->$column);
     @endphp
 
     <img src="{{ $url }}"
