@@ -45,6 +45,7 @@ class AdminActionsController extends Controller
 
             $productIds = DB::table('products')
                 ->where('category_id', $id)
+                ->where('status', '!=', 2)
                 ->pluck('id');
 
             foreach ($productIds as $productId) {
