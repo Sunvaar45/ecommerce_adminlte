@@ -9,8 +9,6 @@ class AdminActionsController extends Controller
 {
     public function delete($table, $id)
     {
-        $this->softDelete($table, 'id', $id);
-
         $this->cascadeDelete($table, $id);
 
         return redirect()->back()
@@ -39,6 +37,8 @@ class AdminActionsController extends Controller
 
     private function cascadeDelete($table, $id)
     {
+        $this->softDelete($table, 'id', $id);
+
         // category cascade
         if ($table == 'categories') {
             $this->softDelete('products', 'category_id', $id);
