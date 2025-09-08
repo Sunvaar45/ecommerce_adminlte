@@ -23,7 +23,7 @@ Route::prefix('admin/')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
 });
 
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth.admin')->group(function () {
     Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
     // Home Route
