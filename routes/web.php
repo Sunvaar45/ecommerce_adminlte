@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminActionsController;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\FaviconAndTitleController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +12,14 @@ use App\Http\Controllers\ProductImagesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
+// Auth Routes
+Route::prefix('admin/')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+    Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+});
+
+// Redirects and Home Route
 Route::redirect('/', '/admin/home');
 Route::redirect('/home', '/admin/home');
 Route::get('/admin/home', [HomeController::class, 'index'])->name('home');
