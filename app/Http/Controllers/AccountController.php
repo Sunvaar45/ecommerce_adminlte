@@ -31,6 +31,11 @@ class AccountController extends Controller
         ]));
 
         if ($request->filled('password')) {
+            if (!Hash::check($request->input('current_password'), $admin->password)) {
+                return redirect()->back()
+                    ->withErrors(['current_password' => 'Mevcut şifre yanlış.']);
+            }
+
             $admin->update([
                 'password' => Hash::make($request->input('password')),
             ]);
