@@ -387,12 +387,6 @@ return [
             'url' => '#',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'Çıkış Yap',
-            'route' => 'admin.logout',
-            'icon' => 'fas fa-fw fa-sign-out-alt',
-            'classes' => 'text-danger',
-        ],
     ],
 
     /*
