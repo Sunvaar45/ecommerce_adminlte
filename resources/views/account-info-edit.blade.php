@@ -11,7 +11,7 @@
 <x-success-alert />
 <x-error-alert />
 
-<form method="POST" action="{{ route('account-settings.update') }}">
+<form method="POST" action="{{ route('account.info.update') }}">
     @csrf
 
     <div class="form-group">
@@ -52,9 +52,14 @@
     <x-update-buttons />
 </form>
 
+<hr class="my-4">
+
 <form method="POST" action="{{ route('admin.logout') }}">
     @csrf
-    <button type="submit" class="btn btn-danger">Çıkış Yap</button>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-danger">Çıkış Yap</button>
+    </div>
 </form>
 
 @stop

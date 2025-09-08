@@ -384,7 +384,7 @@ return [
         ['header' => 'HESAP AYARLARI'],
         [
             'text' => 'Profil Bilgileri',
-            'url' => '#',
+            'route' => 'account.info.edit',
             'icon' => 'fas fa-fw fa-user',
         ],
     ],
