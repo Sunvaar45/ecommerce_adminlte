@@ -49,6 +49,15 @@
         <x-validation-error column="password" />
     </div>
 
+    <div class="form-group">
+        <label for="password">Yeni Şifre (Tekrar)</label>
+        <input type="password"
+            name="password_confirmation" id="password_confirmation" class="form-control"
+            placeholder="Yeni Şifre (Tekrar)">
+
+        <x-validation-error column="password_confirmation" />
+    </div>
+
     <x-update-buttons />
 </form>
 
