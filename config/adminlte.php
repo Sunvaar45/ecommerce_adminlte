@@ -389,7 +389,7 @@ return [
         ],
         [
             'text' => 'Çıkış Yap',
-            'url' => '#',
+            'route' => 'admin.logout',
             'icon' => 'fas fa-fw fa-sign-out-alt',
             'classes' => 'text-danger',
         ],

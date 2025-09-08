@@ -3,6 +3,8 @@
 @section('auth_header', 'Admin Girişi')
 
 @section('auth_body')
+    <x-error-alert />
+
     <form action="{{ route('admin.login.post') }}" method="POST">
         @csrf
 
